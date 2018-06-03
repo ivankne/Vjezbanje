@@ -2,7 +2,9 @@
 /* Program prima tri broja, vrijednosti crvene, zelene i plave boje
 Primjeljnim bojama oboja pozadinu stranice. Ako ne primi parametar stranica će biti plave boje */
 
-
+$red=isset($_POST["red"]) ? $_POST["red"] : 0;
+$green=isset($_POST["green"]) ? $_POST["green"] : 0;
+$blue=isset($_POST["blue"]) ? $_POST["blue"] : 255;
 ?>
 
 <!doctype html>
@@ -13,7 +15,7 @@ Primjeljnim bojama oboja pozadinu stranice. Ako ne primi parametar stranica će 
         <style>
                 body
                 {
-                    background-color: blue;
+                    background-color: rgb(<?php echo $red ?>,<?php echo $green ?>,<?php echo $blue ?>);
                 }
                 input
                 {
