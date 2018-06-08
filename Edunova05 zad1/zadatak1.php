@@ -21,9 +21,7 @@
     -->
 
     <?php
-    for($i=1;$i<=100;$i++):
-    ?>    
-        <?php    
+    for($i=1;$i<=100;$i++):   
         if($i % 2 == 0):
         ?>
             <p class="crveni"><?php echo $i ?></p>
