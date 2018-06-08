@@ -5,7 +5,6 @@
     <title>Vjezba1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
 
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
@@ -66,7 +65,7 @@
 
 <nav class="nav">
   <a class="nav-link active" href="index.php">Home</a>
-  <a class="nav-link" href="#">Nadzorna ploča</a>
+  <a class="nav-link" href="nadzornaPloca.php">Nadzorna ploča</a>
   
 </nav>
 
@@ -74,16 +73,34 @@
         
     <h2>Login</h2>
 
-    <form action="/action_page.php">
+    <form method="post" action="autoriziraj.php">
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="name" required>
+        <input type="text" placeholder="Enter Username" name="korisnik">
 
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="password" placeholder="Enter Password" name="lozinka">
             
-        <button type="submit">Login</button>  
+        <input type="submit" value="Autoriziraj">
     </form>
 </div>
+
+<?php
+    if(isset($_GET["poruka"]))
+    {
+        switch($_GET["poruka"])
+        {
+            case "1":
+                echo "Neispravan unos imena i lozinke!";
+                break;
+            case "2":
+                echo "Niste unijeli korisnika!";
+                break;
+            default:
+                echo "";
+                break;        
+        }
+    }
+?>
 
 </body>
 </html>

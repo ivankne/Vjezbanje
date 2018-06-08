@@ -39,7 +39,7 @@
         }
 
         .container {
-            padding-top: 100px;
+            padding: 16px;
             width: 500px;
             margin: 0 auto;
         }
@@ -66,13 +66,15 @@
 
 <nav class="nav">
   <a class="nav-link active" href="index.php">Home</a>
-  <a class="nav-link" href="login.php">Login</a>
+  <a class="nav-link" href="logout.php">Odjavi se</a>
+  
 </nav>
 
 <div class="container">
-    <h1>Ovo je Homepage koji svi vide!</h1>
+        
+    <h1>Nadzorna Ploča</h1>
+    <p>Uspješno registriran!</p>
 </div>
-
 
 </body>
 </html>
