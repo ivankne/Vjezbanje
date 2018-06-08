@@ -14,7 +14,7 @@ if(isset($_POST["korisnik"]))
         {
             session_start();
             $_SESSION["autoriziran"]="Edunova - " . $_POST["korisnik"];
-            header("location: nadzornaPloca.php"); //moze na nadzornu plocu samo ako je ispravno uneseno
+            header("location: nadzornaPloca.php"); 
         }else
             {
                 header("location: login.php?poruka=1"); // echo "Niste unijeli korisnika!";
