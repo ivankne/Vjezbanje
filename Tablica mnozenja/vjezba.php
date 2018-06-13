@@ -9,19 +9,9 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
+    <title>Tablica Mnozenja</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
-    <style>
-        table {
-          width: 100%; 
-        }
-        td {
-          text-align: right;
-          font-size: 2rem;  
-        }
-        h2{padding: 20px;}
-    </style>
   </head>
 
   <body>
@@ -41,17 +31,17 @@
 
         <table>
           <tbody> 
-          <?php
-          for($i=0;$i<$broj1;$i++)
-          {
-            echo "<tr>";
-            for($j=0;$j<$broj2;$j++)
+            <?php
+            for($i=0;$i<$broj1;$i++)
             {
-              echo"<td>" . ($i*$j) . "</td>";
+              echo "<tr>";
+              for($j=0;$j<$broj2;$j++)
+              {
+                echo"<td>" . ($i+1)*($j+1) . "</td>"; //+1 zato da ne ispisuje nule!
+              }
+            echo"</tr>";  
             }
-          echo"</tr>";  
-          }
-          ?>
+            ?>
           </tbody>
         </table>
 
