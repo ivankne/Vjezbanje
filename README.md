@@ -9,3 +9,6 @@ Edunova05
 
 Ednuova05 zad1
   Ispisati brojeve od 1 do 100 da je svaki drugi broj crvene boje.
+  
+Tablica množenja
+  Napraviti tablicu množenja ovisno o dva broja (red i stupac) koje korisnik unesen. Koristiti RWB foundation.
