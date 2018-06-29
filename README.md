@@ -12,3 +12,6 @@ Ednuova05 zad1
   
 Tablica množenja
   Napraviti tablicu množenja ovisno o dva broja (red i stupac) koje korisnik unesen. Koristiti RWB foundation.
+
+Vježba7
+  stranica sa foundationom, podjela privatnog dijela kojeg vidi samo prijavljeni korisnik
