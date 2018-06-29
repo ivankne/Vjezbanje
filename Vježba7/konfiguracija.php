@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+include_once "funkcije.php";
+
 $nazivAPP="Moja stranica";
 
 switch($_SERVER["HTTP_HOST"]){

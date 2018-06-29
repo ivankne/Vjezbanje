@@ -1,4 +1,9 @@
-<?php include_once "../konfiguracija.php" ?>
+<?php include_once "../konfiguracija.php";
+if(!isset($_SESSION["o"]))
+{
+    header("location: " . $putanjaAPP . "odjava.php");
+}
+?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
   <head>
@@ -13,6 +18,9 @@
 
 
   	Nadzorna ploča
+        <?php
+        l($_SERVER);
+        ?>
 
     <?php include_once "../predlozak/podnozje.php" ?>
 
