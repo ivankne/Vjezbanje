@@ -2,7 +2,7 @@
 
 session_start();
 $direktorijAPP=__DIR__ . "/";
-$putanjaAPP="/Vježba7/";
+$putanjaAPP="";
 $idAPP="MojaStranicaV1";
 $nazivAPP="Moja stranica";
 
