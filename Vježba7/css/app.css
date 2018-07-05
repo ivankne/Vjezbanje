@@ -2,3 +2,11 @@
 #izbornik > div > ul > li.menu-text > a{
     padding: 0;
 }
+
+#my-info{
+    padding: 10px;
+}
+
+.callout.primary{
+    /*promijeni boju! */
+}

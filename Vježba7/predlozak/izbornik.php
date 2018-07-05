@@ -2,38 +2,44 @@
     <button class="menu-icon" type="button" data-toggle="izbornik"></button>
     <div class="title-bar-title"><?php echo $nazivAPP; ?></div>
 </div>
+<br>
+<a href="<?php echo $putanjaAPP . "index.php"; ?>" class="simple-text logo-normal">
+    <img class="thumbnail" src="img/edunova.svg">
+</a>
+<div class="hide-for-small">
+        <nav>
+            <ul class="side-nav">
+                <?php if(isset( $_SESSION[$idAPP."o"])): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $putanjaAPP; ?>privatno/nadzornaPloca.php">
+                        <i class="fi-burst-new">Nadzorna ploča</i>
+                    </a>
+                </li>
+                <?php endif;?>
+                <li class="nav-item ">
+                    <a class="nav-link" href="<?php echo $putanjaAPP;?>kontakt.php">
+                        <i class="fi-burst-new">Kontakt</i>
 
-<div class="top-bar" id="izbornik" <?php echo $bojaIzbornika ?>>
-    <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-            <?php
-            stavkaIzbornika($putanjaAPP,"index.php","<i class=\"fas fa-home\" style=\"color: #2a6182;\"></i>");
-            if(isset($_SESSION["o"])):
-                stavkaIzbornika($putanjaAPP,"privatno/nadzornaPloca.php","Nadzorna ploča");
-            endif;
-            stavkaIzbornika($putanjaAPP,"onama.php","O nama");
-            stavkaIzbornika($putanjaAPP,"kontakt.php","Kontakt");
-
-            ?>
-            <li>
-                <a href="#">Dropdown</a>
-                <ul class="vertical menu">
-                    <?php
-                    for($i=0;$i<20;$i++){
-                        stavkaIzbornika($putanjaAPP,"kontakt" . $i . ".php","Kontakt " . $i);
-                    }
-                    ?>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div class="top-bar-right">
-        <ul class="menu">
-            <?php if(isset($_SESSION["o"])): ?>
-                <li style="width:100%; text-align: center;"><a href="<?php echo $putanjaAPP; ?>odjava.php">Odjava</a></li>
-            <?php else:?>
-                <li style="width:100%; text-align: center;"><a href="<?php echo $putanjaAPP; ?>prijava.php">Prijava</a></li>
-            <?php endif?>
-        </ul>
-    </div>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="<?php echo $putanjaAPP; ?>onama.php">
+                        <i class="fi-burst-new">O nama</i>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <?php if(!isset( $_SESSION[$idAPP."o"])): ?>
+                        <a class="nav-link" href="<?php echo $putanjaAPP;?>prijava.php">
+                            <i class="fi-burst-new">Prijava</i>
+                        </a>
+                    <?php else: ?>
+                        <a class="nav-link" href="<?php echo $putanjaAPP;?>odjava.php">
+                            <i class="fi-burst-new">Odjava</i>
+                        </a>
+                    <?php endif; ?>
+                </li>
+            </ul>
+        </nav>
 </div>
+
+

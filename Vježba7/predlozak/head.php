@@ -5,3 +5,4 @@
     <link href="<?php echo $putanjaAPP; ?>css/fontawesome/css/fontawesome-all.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo $putanjaAPP; ?>css/foundation.css">
     <link rel="stylesheet" href="<?php echo $putanjaAPP; ?>css/app.css">
+    <link rel="stylesheet" href="<?php echo $putanjaAPP; ?>icons/foundation-icons.css" />

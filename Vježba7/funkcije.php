@@ -5,8 +5,7 @@ function l($varijabla){
     print_r($varijabla);
     echo "</pre>";
 }
-
-//class="active" za označenu stranicu na kojoj smo trenutno
+/*
 function stavkaIzbornika($putanjaAPP, $stranica, $labela){
     ?>
     <li<?php
@@ -16,3 +15,4 @@ function stavkaIzbornika($putanjaAPP, $stranica, $labela){
     ?>><a href="<?php echo $putanjaAPP . $stranica; ?>"><?php echo $labela;  ?></i></a></li>
     <?php
 }
+*/

@@ -2,20 +2,35 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
   <head>
-    <?php include_once "predlozak/head.php" ?>
+    <?php include_once $direktorijAPP . "predlozak/head.php" ?>
   </head>
   <body>
-    <div class="grid-container">
-      
-    <?php include_once "predlozak/zaglavlje.php" ?>
+  <div class="off-canvas-wrapper">
+      <div  class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+          <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas="" data-position="left" aria-hidden="true" data-offcanvas="18vv69-offcanvas">
+              <div class="row column">
+                  <br>
+                  <?php include_once $direktorijAPP . "predlozak/izbornik.php" ?>
+              </div>
+          </div>
 
-    <?php include_once "predlozak/izbornik.php" ?>
+
+          <div class="off-canvas-content" data-off-canvas-content="">
+              <div class="callout primary">
+                  <div class="row column">
+                    <?php include_once $direktorijAPP . "predlozak/zaglavlje.php" ?>
+                  </div>
+              </div>
+
+          <p>O NAMA</p>
+
+          <?php include_once $direktorijAPP . "predlozak/podnozje.php" ?>
 
 
-  	O nama
+          <?php include_once $direktorijAPP . "predlozak/skripte.php" ?>
 
-    <?php include_once "predlozak/podnozje.php" ?>
-
-    <?php include_once "predlozak/skripte.php" ?>
+          </div>
+      </div>
+  </div>
   </body>
 </html>
