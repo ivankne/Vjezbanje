@@ -10,6 +10,9 @@
       <div  class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
           <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas="" data-position="left" aria-hidden="true" data-offcanvas="18vv69-offcanvas">
               <div class="row column">
+                  <a href="<?php echo $putanjaAPP . "index.php"; ?>" class="simple-text logo-normal">
+                      <img class="thumbnail" src="img/edunova.svg">
+                  </a>
                   <?php include_once $direktorijAPP . "predlozak/izbornik.php" ?>
               </div>
           </div>

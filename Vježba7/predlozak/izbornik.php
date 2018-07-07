@@ -3,9 +3,7 @@
     <div class="title-bar-title"><?php echo $nazivAPP; ?></div>
 </div>
 <br>
-<a href="<?php echo $putanjaAPP . "index.php"; ?>" class="simple-text logo-normal">
-    <img class="thumbnail" src="img/edunova.svg">
-</a>
+
 <div class="hide-for-small">
         <nav>
             <ul class="side-nav">
