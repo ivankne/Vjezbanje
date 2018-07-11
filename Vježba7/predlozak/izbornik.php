@@ -13,6 +13,16 @@
                         <i class="fi-burst-new">Nadzorna ploča</i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $putanjaAPP; ?>privatno/smjerovi/index.php">
+                        <i class="fi-burst-new">Bendovi</i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $putanjaAPP; ?>privatno/PDO.php">
+                        <i class="fi-burst-new">PDO</i>
+                    </a>
+                </li>
                 <?php endif;?>
                 <li class="nav-item ">
                     <a class="nav-link" href="<?php echo $putanjaAPP;?>kontakt.php">

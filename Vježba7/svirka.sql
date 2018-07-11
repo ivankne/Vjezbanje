@@ -1,9 +1,3 @@
-drop database if exists svirka;
-
-create database svirka default character set utf8;
-
-use svirka;
-
 create table bend(
 sifra int not null primary key auto_increment,
 username varchar(20) not null,

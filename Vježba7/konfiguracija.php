@@ -19,3 +19,6 @@ switch($_SERVER["HTTP_HOST"]){
     $bojaIzbornika="";
     break;
 }
+
+$veza = new PDO("mysql:host=localhost;dbname=svirka","edunova","edunova");
+$veza->exec("set names utf8;");
