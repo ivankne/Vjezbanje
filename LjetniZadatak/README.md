@@ -1,19 +1,22 @@
-# Vjezbanje
-Zadaci sa predavanja @edunova
+Obavezni dio:
 
-Zadatak 5. Program prima tri broja, vrijednosti crvene, zelene i plave boje
-Primjeljnim bojama oboja pozadinu stranice. Ako ne primi parametar stranica će biti plave boje.
+    Aplikacija mora imati javni i privatni dio
+    Aplikacija mora imati metapodatke prema http://ogp.me/
+    Aplikacija mora imati favicon-e kreirane pomoću http://www.favicon-generator.org/
+    Aplikacija mora biti prilagodljiva minimalno dvijema različitim širinama zalona (RWD) - sadržaj mora biti čitljiv, vidljiv,      dobro organiziran on obje ili više različitih širina zaslona
+    Javni dio mora imati početnu stranicu te kontakt stranicu s google maps kartom
+    Autorizacija se izvršava koda
+    Na stranici autorizacije postaviti minimalno 2 korisnika i lozinke za spajanje
+    Privatni dio mora imati onoliko programa (vidljivi u izborniku samo autoriziranim korisnicima) koliko imate tablica u bazi koje u sebi nemaju vanjske ključeve
+    Svaki program mora omogućiti CRUD - unos, čitanje, promjenu i brisanje svih podataka koji nisu vezani u nekim drugim tablicama vanjskim ključem.
+    Postaviti na byethost aplikaciju
+    Postaviti na github kod
+    U readme.md napisati koje su točke realizirane
+    U izborniku aplikacije postaviti stavku link na github kod
+    U izborniku aplikacije postaviti stavku link na ERA dijagram
+    Za razvoj aplikacije se koristi Foundation RWD framework
 
-Edunova05  
-  Npraviti prijavu na stranicu sa bootstrapom.
 
-Ednuova05 zad1
-  Ispisati brojeve od 1 do 100 da je svaki drugi broj crvene boje.
-  
-Tablica množenja
-  Napraviti tablicu množenja ovisno o dva broja (red i stupac) koje korisnik unesen. Koristiti RWB foundation.
+Napredni dio:
 
-Vježba7
-  stranica sa foundationom, podjela privatnog dijela kojeg vidi samo prijavljeni korisnik, .svg format slike
-  Ne učitava sliku na nadzornoj ploči X
-  Mogu pristupiti nadzornoj ploči iako nisam prijavljen X
+    Za unos i promjenu u bazu potrebno je napraviti kontrole svih unosnih podataka
