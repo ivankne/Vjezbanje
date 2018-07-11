@@ -22,3 +22,4 @@ Vježba7
     Ne učitava sliku na nadzornoj ploči √
     Mogu pristupiti nadzornoj ploči iako nisam prijavljen √
     PDO ne prikazuje čćšđž iz baze X
+    Ne radi promjena.php X
