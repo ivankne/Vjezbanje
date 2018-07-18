@@ -1,0 +1,60 @@
+.grid-container{
+    border: 2px solid black;
+    padding: 0;
+    box-shadow: 4px 6px 20px #2c1a0d;
+}
+.button{
+    background-color: #2c1a0d;
+}
+.callout{
+    margin: 5rem 0 5rem 0;
+}
+footer{
+    background-image: url(../img/back.svg);
+    box-shadow: 3px 5px 20px #2c1a0d;
+}
+.header{
+    background-image: url(../img/header.svg);
+    border: 3px solid black;
+    box-shadow: 3px 5px 20px #2c1a0d;
+}
+
+/*Large screen nav*/
+.header .veliki ul li{
+    padding: 70px 1px;
+
+}
+.header .veliki ul li a{
+    color: #f9ce29;
+    text-shadow: 8px 5px 2px #000;
+    font-size: 2rem;
+}
+
+/*
+
+
+SMALL SCREEN NAV
+
+
+ */
+
+footer img, .header img{width:100%;}
+footer {
+    color: white;
+    text-align: center;
+    border: 3px solid black;
+}
+footer a i{
+    font-size: 2rem;
+    color: white;
+}
+hr{
+    padding: 0 50px;
+    color: #ccc;
+}
+form {
+    display: inline-block;
+}
+.mjesto{height: 500px;}
+
+
