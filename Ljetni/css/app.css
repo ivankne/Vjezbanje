@@ -2,6 +2,7 @@
     border: 2px solid black;
     padding: 0;
     box-shadow: 4px 6px 20px #2c1a0d;
+    background-color: #fbeec5;
 }
 .button{
     background-color: #2c1a0d;
@@ -30,6 +31,12 @@ footer{
     font-size: 2rem;
 }
 
+.header .veliki ul li a:hover{
+    color: #2c1a0d;
+    text-shadow: 5px 3px 2px #f9ce29;
+    font-size: 2rem;
+}
+
 /*
 
 
@@ -37,6 +44,19 @@ SMALL SCREEN NAV
 
 
  */
+
+.pad {
+    padding: 30px;
+}
+.social li{
+    list-style-type: none;
+    display: inline-block;
+    padding-right: 1.5rem;
+}
+.social li a{
+    font-size: 4rem;
+    color: #000;
+}
 
 footer img, .header img{width:100%;}
 footer {
