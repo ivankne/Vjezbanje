@@ -7,13 +7,14 @@
 .button{
     background-color: #2c1a0d;
 }
+.button:hover{
+    background-color: #f9ce29;
+    color:#2c1a0d
+}
 .callout{
     margin: 5rem 0 5rem 0;
 }
-footer{
-    background-image: url(../img/back.svg);
-    box-shadow: 3px 5px 20px #2c1a0d;
-}
+
 .header{
     background-image: url(../img/header.svg);
     border: 3px solid black;
@@ -44,9 +45,23 @@ SMALL SCREEN NAV
 
 
  */
-
+.zuti{
+    color: #f9ce29;
+    text-shadow: 2px 2px 1px #2c1a0d;
+}
+.zuti:hover{
+    color: #2c1a0d;
+    text-shadow: 2px 2px 1px #f9ce29;
+}
+.sjena img:hover{
+    box-shadow: 1px 2px 2px #2c1a0d;
+}
 .pad {
     padding: 30px;
+}
+
+.pad h1{
+    font-family: 'Playball', cursive;
 }
 .social li{
     list-style-type: none;
@@ -58,6 +73,10 @@ SMALL SCREEN NAV
     color: #000;
 }
 
+footer{
+    background-image: url(../img/back.svg);
+    box-shadow: 3px 5px 20px #2c1a0d;
+}
 footer img, .header img{width:100%;}
 footer {
     color: white;
@@ -68,6 +87,10 @@ footer a i{
     font-size: 2rem;
     color: white;
 }
+
+footer ul{
+    list-style-type: none;
+}
 hr{
     padding: 0 50px;
     color: #ccc;
@@ -75,6 +98,6 @@ hr{
 form {
     display: inline-block;
 }
-.mjesto{height: 500px;}
+/*.mjesto{height: 500px;}*/
 
 

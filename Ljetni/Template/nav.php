@@ -13,9 +13,17 @@
 
 <div class=" veliki show-for-large">
         <ul class="align-right vertical medium-horizontal menu">
+
+
+            <li>
+                <a href="<?php echo $putanjaAPP;?>index.php">
+                    <i class="fi-home"> Početna</i>
+                </a>
+            </li>
+
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
-                    <a href="<?php echo $putanjaAPP; ?>private/privatni.php">
+                    <a href="<?php echo $putanjaAPP; ?>private/clanovi.php">
                         <i class="fi-torsos-all"> Članovi</i>
                     </a>
                 </li>
@@ -25,12 +33,6 @@
                     </a>
                 </li>
             <?php endif;?>
-
-            <li>
-                <a href="<?php echo $putanjaAPP;?>index.php">
-                    <i class="fi-home"> Početna</i>
-                </a>
-            </li>
 
             <li>
                 <a href="<?php echo $putanjaAPP;?>contact.php">
@@ -63,7 +65,7 @@
         <ul class=" menu vertical">
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
-                    <a href="<?php echo $putanjaAPP; ?>private/privatni.php">
+                    <a href="<?php echo $putanjaAPP; ?>private/clanovi.php">
                         <i class="fi-torsos-all"> Članovi</i>
                     </a>
                 </li>

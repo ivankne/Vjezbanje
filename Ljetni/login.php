@@ -44,7 +44,7 @@
         <?php include_once "Template/nav.php" ?>
     </div>
 
-    <div class="grid-x grid-padding-x">
+    <div class="grid-x grid-padding-x mjesto">
         <div class="large-12 cell text-center">
             <form class="callout text-center" action="<?php echo $putanjaAPP . "authorize.php" ?>" method="post">
                 <h2>Prijavi se</h2>
