@@ -1,7 +1,7 @@
 <hr />
 <div class="grid-x">
     <div class="cell small-12 text-center">
-        <a href="https://github.com/ivankne/Vjezbanje/tree/master/LjetniZadatak" target="_blank">
+        <a href="https://github.com/ivankne/Vjezbanje/tree/master/Ljetni" target="_blank">
             <i class="fi-social-github size-60"></i>
         </a>
         <a href="https://www.facebook.com/bechar69" target="_blank">

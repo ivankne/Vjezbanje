@@ -21,6 +21,37 @@
     box-shadow: 3px 5px 20px #2c1a0d;
 }
 
+
+table thead{
+    background-image: url(../img/back.svg);
+    border: 2px solid #2c1a0d;
+    box-shadow: 3px 5px 20px #2c1a0d;
+}
+table thead tr th{
+    text-align: center;
+    color: #f9ce29;
+    text-shadow: 8px 5px 2px #000;
+    font-size: 1.5rem;
+    padding: 10px 0 10px;
+}
+
+table tbody{
+    background-color: #fbeec5;
+    border: 2px solid #2c1a0d;
+    box-shadow: 3px 5px 20px #2c1a0d;
+}
+.mjesto .button{
+    background-color: #2c1a0d;
+    color: #f9ce29;
+    box-shadow: 3px 3px 2px #2c1a0d;
+}
+.mjesto .button:hover{
+
+    background-color: #f9ce29;
+    color: #2c1a0d;
+    box-shadow: 3px 3px 2px #2c1a0d;
+}
+
 /*Large screen nav*/
 .header .veliki ul li{
     padding: 70px 1px;

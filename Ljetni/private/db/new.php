@@ -1,0 +1,63 @@
+<?php include_once "../../config.php" ;
+
+
+if(!isset($_SESSION[$idAPP."o"])){
+  header("location: " . $putanjaAPP . "logout.php");
+}
+
+if(isset($_POST["new"])){
+    $izraz = $veza->prepare("insert into clan (ime,prezime,email,koeficijent) values 
+                          (:ime,:prezime,:email,:koeficijent)");
+    unset($_POST["new"]);
+    $izraz->execute($_POST);
+    header("location: clanovi.php");
+}
+
+?>
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+    <?php include_once "../../Template/head.php" ?>
+</head>
+<body>
+<div class="grid-container">
+    <div class="header">
+        <?php include_once "../../Template/nav.php" ?>
+    </div>
+
+    <div class="grid-x grid-padding-x mjesto">
+        <div class="large-12 cell text-center">
+
+        <form class="callout text-center" action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
+
+            <div class="floated-label-wrapper">
+                <label for="ime">Ime</label>
+                <input autocomplete="off" type="text" id="ime" name="ime" placeholder="Ime">
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="prezime">Prezime</label>
+                <input autocomplete="off" type="text"  id="prezime" name="prezime" placeholder="Prezime" >
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="email">Email</label>
+                <input autocomplete="off" type="email"  id="email" name="email" >
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="koeficijent">Koeficijent</label>
+                <input autocomplete="off" type="number" step="0.01" max="1" id="koeficijent" name="koeficijent" >
+            </div>
+            <input type="hidden" name="sifra" />
+
+            <input class="button expanded" type="submit" name="new" value="Dodaj">
+        </form>
+        </div>
+    </div>
+
+    <footer>
+        <?php include_once "../../Template/footer.php" ?>
+    </footer>
+</div>
+
+<?php include_once "../../Template/script.php" ?>
+</body>
+</html>

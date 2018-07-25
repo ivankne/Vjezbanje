@@ -36,6 +36,11 @@
                     </a>
                     </li>
                     <li>
+                        <a href="https://github.com/ivankne/Vjezbanje/tree/master/LjetniZadatak" target="_blank">
+                            <i class="fi-social-github size-60"></i>
+                        </a>
+                    </li>
+                    <li>
                         <a href="https://www.facebook.com/bechar69" target="_blank">
                             <i class="fi-social-facebook"></i></li>
                     </a>
