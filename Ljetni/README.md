@@ -2,7 +2,7 @@ Obavezni dio:
 
     1.Aplikacija mora imati javni i privatni dio ✓
     2.Aplikacija mora imati metapodatke prema http://ogp.me/ ✓
-    3.Aplikacija mora imati favicon-e kreirane pomoću http://www.favicon-generator.org/
+    3.Aplikacija mora imati favicon-e kreirane pomoću http://www.favicon-generator.org/ ✓
     4.Aplikacija mora biti prilagodljiva minimalno dvijema različitim širinama zalona (RWD) - sadržaj mora biti čitljiv, vidljiv,             dobro organiziran on obje ili više različitih širina zaslona ✓
     5.Javni dio mora imati početnu stranicu te kontakt stranicu s google maps kartom ✓
     6.Autorizacija se izvršava iz koda ✓
