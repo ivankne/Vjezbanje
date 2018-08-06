@@ -6,11 +6,11 @@ if(!isset($_SESSION[$idAPP."o"])){
 }
 
 if(isset($_POST["new"])){
-    $izraz = $veza->prepare("insert into clan (ime,prezime,email,koeficijent) values 
-                          (:ime,:prezime,:email,:koeficijent)");
+    $izraz = $veza->prepare("insert into dogadaj (naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,narucitelj,adresa) values 
+                          (:naziv,:napomena,:datum_pocetka,:datum_zavrsetka,:cijena,:narucitelj,:adresa)");
     unset($_POST["new"]);
     $izraz->execute($_POST);
-    header("location: clanovi.php");
+    header("location: dogadaji.php");
 }
 
 ?>
@@ -31,22 +31,35 @@ if(isset($_POST["new"])){
         <form class="callout text-center" action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
 
             <div class="floated-label-wrapper">
-                <label for="ime">Ime</label>
-                <input autocomplete="off" type="text" id="ime" name="ime" placeholder="Ime">
+                <label for="naziv">Naziv</label>
+                <input autocomplete="off" type="text" id="naziv" name="naziv" placeholder="naziv">
             </div>
             <div class="floated-label-wrapper">
-                <label for="prezime">Prezime</label>
-                <input autocomplete="off" type="text"  id="prezime" name="prezime" placeholder="Prezime" >
+                <label for="napomena">Napomena</label>
+                <input autocomplete="off" type="text" id="napomena" name="napomena" placeholder="napomena">
             </div>
             <div class="floated-label-wrapper">
-                <label for="email">Email</label>
-                <input autocomplete="off" type="email"  id="email" name="email" >
+                <label for="datum_pocetka">datum_pocetka</label>
+                <input autocomplete="off" type="date" id="datum_pocetka" name="datum_pocetka" placeholder="datum pocetka">
             </div>
             <div class="floated-label-wrapper">
-                <label for="koeficijent">Koeficijent</label>
-                <input autocomplete="off" type="number" step="0.01" max="1" id="koeficijent" name="koeficijent" >
+                <label for="datum_zavrsetka">datum_zavrsetka</label>
+                <input autocomplete="off" type="date" id="datum_zavrsetka" name="datum_zavrsetka" placeholder="datum zavrsetka">
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="cijena">cijena</label>
+                <input autocomplete="off" type="number" id="cijena" step="100" name="cijena" placeholder="cijena">
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="narucitelj">narucitelj</label>
+                <input autocomplete="off" type="text"  id="narucitelj" name="narucitelj" placeholder="narucitelj" >
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="adresa">adresa</label>
+                <input autocomplete="off" type="text"  id="adresa" name="adresa" >
             </div>
             <input type="hidden" name="sifra" />
+            <input type="hidden" name="bend" />
 
             <input class="button expanded" type="submit" name="new" value="Dodaj">
         </form>

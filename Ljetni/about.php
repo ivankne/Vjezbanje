@@ -31,12 +31,12 @@
                 </p>
                 <ul class="social">
                     <li>
-                    <a href="https://github.com/ivankne/Vjezbanje/tree/master/LjetniZadatak" target="_blank">
-                        <i class="fi-social-github size-60"></i>
+                    <a href="https://github.com/ivankne/Vjezbanje/tree/master/Ljetni" target="_blank">
+                        <i class="fi-database"></i>
                     </a>
                     </li>
                     <li>
-                        <a href="https://github.com/ivankne/Vjezbanje/tree/master/LjetniZadatak" target="_blank">
+                        <a href="https://github.com/ivankne/Vjezbanje/tree/master/Ljetni" target="_blank">
                             <i class="fi-social-github size-60"></i>
                         </a>
                     </li>

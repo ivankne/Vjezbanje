@@ -17,14 +17,12 @@ if(!isset($_GET["sifra"]) && !isset($_POST["sifra"])){
 
 
 if(isset($_POST["edit"])){
-  $izraz = $veza->prepare("update clan set ime=:ime, prezime=:prezime,
-                          email=:email,bend=:bend,koeficijent=:koeficijent
-                          where sifra=:sifra;");
+  $izraz = $veza->prepare("update dogadaj set naziv=:naziv,napomena=:napomena,datum_pocetka=:datum_pocetka,datum_zavrsetka=:datum_zavrsetka,narucitelj=:narucitelj,adresa=:adresa where sifra=:sifra;");
   unset($_POST["edit"]);
   $izraz->execute($_POST);
-  header("location: clanovi.php");
+  header("location: dogadaji.php");
 }else{
-  $izraz = $veza->prepare("select * from clan where sifra=:sifra");
+  $izraz = $veza->prepare("select * from dogadaj where sifra=:sifra");
   $izraz->execute($_GET);
   $o=$izraz->fetch(PDO::FETCH_OBJ);
 }
@@ -45,33 +43,37 @@ if(isset($_POST["edit"])){
     <div class="grid-x grid-padding-x mjesto">
         <div class="large-12 cell text-center">
         <?php
-        $veza = new PDO("mysql:host=localhost;dbname=svirka","edunova","edunova");
+        $veza = new PDO("mysql:host=sql109.byethost.com;dbname=b14_22307246_svirka","b14_22307246","edunova123");
         $veza->exec("set names utf8;");
-        $izraz = $veza->prepare(" select a.sifra,a.ime,a.prezime,
-                        a.email, a.koeficijent, count(b.clan) /*b nema sifru!?*/ as clanova
-                         from clan a left join dog_clan b
-                        on a.sifra=b.clan group by a.sifra,a.ime,a.prezime,
-                        a.email, a.koeficijent");
+        $izraz = $veza->prepare("update dogadaj set naziv=:naziv,napomena=:napomena,datum_pocetka=:datum_pocetka,datum_zavrsetka=:datum_zavrsetka,narucitelj=:narucitelj,adresa=:adresa where sifra=:sifra;");
         $izraz->execute();
         $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
         ?>
         <form class="callout text-center" action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
 
             <div class="floated-label-wrapper">
-                <label for="ime">Ime</label>
-                <input value="<?php echo $o->ime ?>" autocomplete="off" type="text" id="ime" name="ime" placeholder="Ime">
+                <label for="naziv">Naziv</label>
+                <input value="<?php echo $o->naziv ?>" autocomplete="off" type="text" id="naziv" name="naziv" placeholder="naziv">
             </div>
             <div class="floated-label-wrapper">
-                <label for="prezime">Prezime</label>
-                <input value="<?php echo $o->prezime ?>" autocomplete="off" type="text"  id="prezime" name="prezime" placeholder="Prezime" >
+                <label for="napomena">Napomena</label>
+                <input value="<?php echo $o->napomena ?>" autocomplete="off" type="text"  id="napomena" name="napomena" placeholder="napomena" >
             </div>
             <div class="floated-label-wrapper">
-                <label for="email">Email</label>
-                <input value="<?php echo $o->email ?>" autocomplete="off" type="email"  id="email" name="email" >
+                <label for="datum_pocetka">Datum pocetka</label>
+                <input value="<?php echo $o->datum_pocetka ?>" autocomplete="off" type="datetime-local"  id="datum_pocetka" name="datum_pocetka" >
             </div>
             <div class="floated-label-wrapper">
-                <label for="koeficijent">Koeficijent</label>
-                <input  value="<?php echo $o->koeficijent ?>" autocomplete="off" type="number" step="0.01" max="1" id="koeficijent" name="koeficijent" >
+                <label for="datum_zavrsetka">datum_zavrsetka</label>
+                <input  value="<?php echo $o->datum_zavrsetka ?>" autocomplete="off" type="datetime-local" id="datum_zavrsetka" name="datum_zavrsetka" >
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="narucitelj">narucitelj</label>
+                <input  value="<?php echo $o->narucitelj ?>" autocomplete="off" type="text" id="narucitelj" name="narucitelj" >
+            </div>
+            <div class="floated-label-wrapper">
+                <label for="adresa">adresa</label>
+                <input  value="<?php echo $o->adresa ?>" autocomplete="off" type="text" id="adresa" name="adresa" >
             </div>
             <input type="hidden" name="sifra" value="<?php echo $o->sifra ?>" />
             <input type="hidden" name="bend" value="<?php echo $o->bend ?>" />

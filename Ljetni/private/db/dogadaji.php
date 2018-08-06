@@ -19,8 +19,12 @@ if(!isset($_SESSION[$idAPP."o"])){
             <div class="cell large-12 pad">
                 <h2 class="text-center">Događaji</h2>
                     <?php
-                    $veza = new PDO("mysql:host=localhost;dbname=svirka","edunova","edunova");
-                    $izraz = $veza->prepare("select * from dogadaj");
+                    $veza = new PDO("mysql:host=sql109.byethost.com;dbname=b14_22307246_svirka","b14_22307246","edunova123");
+                    $izraz = $veza->prepare(" select a.sifra,a.naziv,a.napomena,
+                        a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend, count(b.dogadaj) /*b nema sifru!?*/ as dogadaja
+                         from dogadaj a left join dog_clan b
+                        on a.sifra=b.dogadaj group by a.sifra,a.naziv,a.napomena,
+                        a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend");
                     $izraz->execute();
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
@@ -47,11 +51,21 @@ if(!isset($_SESSION[$idAPP."o"])){
                             <td><?php echo $red->cijena; ?></td>
                             <td><?php echo $red->narucitelj; ?></td>
                             <td><?php echo $red->adresa; ?></td>
+                            <td>
+                                <a href="edit.php?sifra=<?php echo $red->sifra; ?>">
+                                    <i class="fi-page-edit"></i>
+                                </a>
+                                <?php if($red->dogadaja==0): ?>
+                                    <a onclick="return confirm('Sigurno obrisati <?php echo $red->naziv?>')" href="delete.php?sifra=<?php echo $red->sifra; ?>">
+                                        <i class="fi-trash" style="color: red;"></i>
+                                    </a>
+                                <?php endif;?>
+                            </td>
                         </tr>
                     <?php endforeach;?>
                     </tbody>
                 </table>
-
+                <a href="new.php" class="success button expanded">Dodaj</a>
             </div>
 
         </div>

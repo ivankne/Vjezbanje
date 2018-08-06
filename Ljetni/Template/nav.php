@@ -13,8 +13,6 @@
 
 <div class=" veliki show-for-large">
         <ul class="align-right vertical medium-horizontal menu">
-
-
             <li>
                 <a href="<?php echo $putanjaAPP;?>index.php">
                     <i class="fi-home"> Početna</i>
@@ -60,9 +58,9 @@
 </div>
 
 <div class="show-for-small-only">
-<ul class="dropdown menu icons" data-dropdown-menu>
+<ul class="vertical menu" data-responsive-menu="drilldown medium-accordion" style="max-width: 250px;" data-dropdown-menu>
     <li><a href="#"><i class="fi-list"></i></a>
-        <ul class=" menu vertical">
+        <ul class="menu vertical">
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
                     <a href="<?php echo $putanjaAPP; ?>private/db/clanovi.php">
@@ -105,7 +103,6 @@
             </li>
         </ul>
     </li>
-
 </ul>
 </div>
 

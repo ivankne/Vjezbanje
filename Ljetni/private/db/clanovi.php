@@ -20,13 +20,13 @@ if(!isset($_SESSION[$idAPP."o"])){
             <div class="cell small-12 pad">
                 <h2 class="text-center">Članovi</h2>
                 <?php
-                    $veza = new PDO("mysql:host=localhost;dbname=svirka","edunova","edunova");
+                    $veza = new PDO("mysql:host=sql109.byethost.com;dbname=b14_22307246_svirka","b14_22307246","edunova123");
                     $veza->exec("set names utf8;");
-                    $izraz = $veza->prepare(" select a.sifra,a.ime,a.prezime,
-                        a.email, a.koeficijent, count(b.clan) /*b nema sifru!?*/ as clanova
+                    $izraz = $veza->prepare("select a.sifra,a.ime,a.prezime,
+                        a.email, a.bend, a.koeficijent, a.aktivan, count(b.clan) /*b nema sifru!?*/ as clanova
                          from clan a left join dog_clan b
                         on a.sifra=b.clan group by a.sifra,a.ime,a.prezime,
-                        a.email, a.koeficijent");
+                        a.email, a.bend, a.koeficijent, a.aktivan");
                     $izraz->execute();
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
@@ -47,6 +47,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                             <td><?php echo $red->prezime; ?></td>
                             <td><?php echo $red->email; ?></td>
                             <td><?php echo $red->koeficijent; ?></td>
+                            <!--
                             <td>
                                 <a href="edit.php?sifra=<?php echo $red->sifra; ?>">
                                     <i class="fi-page-edit"></i>
@@ -57,12 +58,12 @@ if(!isset($_SESSION[$idAPP."o"])){
                                     </a>
                                 <?php endif;?>
                             </td>
+                            -->
                         </tr>
                     <?php endforeach;?>
                     </tbody>
                 </table>
 
-                    <a href="new.php" class="success button expanded">Dodaj</a>
 
             </div>
 
