@@ -15,11 +15,11 @@ if(!isset($_SESSION[$idAPP."o"])){
             <?php include_once "../../Template/nav.php" ?>
         </div>
 
-        <div class="grid-x mjesto">
+        <div class="grid-x">
             <div class="cell large-12 pad">
                 <h2 class="text-center">Događaji</h2>
+                <a href="new.php" class="success button expanded">Dodaj</a>
                     <?php
-                    $veza = new PDO("mysql:host=sql109.byethost.com;dbname=b14_22307246_svirka","b14_22307246","edunova123");
                     $izraz = $veza->prepare(" select a.sifra,a.naziv,a.napomena,
                         a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend, count(b.dogadaj) /*b nema sifru!?*/ as dogadaja
                          from dogadaj a left join dog_clan b
@@ -29,7 +29,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
 
-                <table>
+                <table class="responsive">
                     <thead>
                     <tr>
                         <th>Naziv</th>
@@ -65,7 +65,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                     <?php endforeach;?>
                     </tbody>
                 </table>
-                <a href="new.php" class="success button expanded">Dodaj</a>
+
             </div>
 
         </div>

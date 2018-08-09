@@ -5,10 +5,10 @@ if(!isset($_SESSION[$idAPP."o"])){
   header("location: " . $putanjaAPP . "logout.php");
 }
 
-if(isset($_POST["new"])){
+if(isset($_POST["add"])){
     $izraz = $veza->prepare("insert into dogadaj (naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,narucitelj,adresa) values 
                           (:naziv,:napomena,:datum_pocetka,:datum_zavrsetka,:cijena,:narucitelj,:adresa)");
-    unset($_POST["new"]);
+    unset($_POST["add"]);
     $izraz->execute($_POST);
     header("location: dogadaji.php");
 }
@@ -61,7 +61,7 @@ if(isset($_POST["new"])){
             <input type="hidden" name="sifra" />
             <input type="hidden" name="bend" />
 
-            <input class="button expanded" type="submit" name="new" value="Dodaj">
+            <input class="button expanded" type="submit" name="add" value="Dodaj">
         </form>
         </div>
     </div>

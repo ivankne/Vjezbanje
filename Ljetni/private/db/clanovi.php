@@ -20,7 +20,7 @@ if(!isset($_SESSION[$idAPP."o"])){
             <div class="cell small-12 pad">
                 <h2 class="text-center">Članovi</h2>
                 <?php
-                    $veza = new PDO("mysql:host=sql109.byethost.com;dbname=b14_22307246_svirka","b14_22307246","edunova123");
+                    $veza = new PDO("mysql:host=localhost;dbname=svirka","edunova","edunova");
                     $veza->exec("set names utf8;");
                     $izraz = $veza->prepare("select a.sifra,a.ime,a.prezime,
                         a.email, a.bend, a.koeficijent, a.aktivan, count(b.clan) /*b nema sifru!?*/ as clanova
@@ -30,7 +30,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                     $izraz->execute();
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
-                <table>
+                <table class="responsive">
                     <thead>
                     <tr>
                         <th>Ime</th>

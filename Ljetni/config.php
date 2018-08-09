@@ -12,7 +12,7 @@ $putanjaAPP="/Ljetni/";
 $idAPP="GazzerV1";
 $nazivAPP="Gazzer";
 
-$veza = new PDO("mysql:host=sql109.byethost.com;dbname=b14_22307246_svirka","b14_22307246","edunova123");
+$veza = new PDO("mysql:host=localhost;dbname=svirka","edunova","edunova");
 $veza->exec("set names utf8;");
 ?>
 

@@ -11,54 +11,66 @@
 
 
 
-<div class=" veliki show-for-large">
+<div class=" veliki show-for-large grid-x">
+    <div class="cell small-1 pad">
+        <img src="<?php echo $putanjaAPP; ?>img/logo.svg">
+    </div>
+    <div class="cell small-5 pad">
+       <h1>Gazzer</h1>
+    </div>
+    <div class="cell small-6 pad">
         <ul class="align-right vertical medium-horizontal menu">
             <li>
                 <a href="<?php echo $putanjaAPP;?>index.php">
-                    <i class="fi-home"> Početna</i>
+                    <i class="fi-home"> </i>
                 </a>
             </li>
 
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
                     <a href="<?php echo $putanjaAPP; ?>private/db/clanovi.php">
-                        <i class="fi-torsos-all"> Članovi</i>
+                        <i class="fi-torsos-all"> </i>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo $putanjaAPP; ?>private/db/dogadaji.php">
-                        <i class="fi-calendar"> Događaji</i>
+                        <i class="fi-calendar"> </i>
                     </a>
                 </li>
             <?php endif;?>
 
             <li>
                 <a href="<?php echo $putanjaAPP;?>contact.php">
-                    <i class="fi-telephone"> Kontakt</i>
+                    <i class="fi-telephone"> </i>
 
                 </a>
             </li>
             <li>
                 <a href="<?php echo $putanjaAPP; ?>about.php">
-                    <i class="fi-music"> O nama</i>
+                    <i class="fi-music"> </i>
                 </a>
             </li>
             <li>
                 <?php if(!isset( $_SESSION[$idAPP."o"])): ?>
                     <a href="<?php echo $putanjaAPP;?>login.php">
-                        <i class="fi-burst-new"> Prijava</i>
+                        <i class="fi-plus"> </i>
                     </a>
                 <?php else: ?>
                     <a href="<?php echo $putanjaAPP;?>logout.php">
-                        <i class="fi-burst-new"> Odjava</i>
+                        <i class="fi-power"> </i>
                     </a>
                 <?php endif; ?>
             </li>
         </ul>
+    </div>
+
 </div>
 
 <div class="show-for-small-only">
-<ul class="vertical menu" data-responsive-menu="drilldown medium-accordion" style="max-width: 250px;" data-dropdown-menu>
+    <div class="cell small-6 pad text-center">
+        <h1>Gazzer</h1>
+    </div>
+<ul class="vertical menu" data-responsive-menu="drilldown medium-accordion"  data-dropdown-menu>
     <li><a href="#"><i class="fi-list"></i></a>
         <ul class="menu vertical">
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
@@ -97,7 +109,7 @@
                     </a>
                 <?php else: ?>
                     <a href="<?php echo $putanjaAPP;?>logout.php">
-                        <i class="fi-burst-new"> Odjava</i>
+                        <i class="fi-power"> Odjava</i>
                     </a>
                 <?php endif; ?>
             </li>

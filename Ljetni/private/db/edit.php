@@ -26,9 +26,8 @@ if(isset($_POST["edit"])){
   $izraz->execute($_GET);
   $o=$izraz->fetch(PDO::FETCH_OBJ);
 }
-
-
 ?>
+
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -42,13 +41,6 @@ if(isset($_POST["edit"])){
 
     <div class="grid-x grid-padding-x mjesto">
         <div class="large-12 cell text-center">
-        <?php
-        $veza = new PDO("mysql:host=sql109.byethost.com;dbname=b14_22307246_svirka","b14_22307246","edunova123");
-        $veza->exec("set names utf8;");
-        $izraz = $veza->prepare("update dogadaj set naziv=:naziv,napomena=:napomena,datum_pocetka=:datum_pocetka,datum_zavrsetka=:datum_zavrsetka,narucitelj=:narucitelj,adresa=:adresa where sifra=:sifra;");
-        $izraz->execute();
-        $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
-        ?>
         <form class="callout text-center" action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
 
             <div class="floated-label-wrapper">
