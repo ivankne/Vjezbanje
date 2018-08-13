@@ -6,13 +6,7 @@
 h1{
     color:#cfced6;
 }
-.button{
-    background-color: #2c1a0d;
-}
-.button:hover{
-    background-color: #f9ce29;
-    color:#2c1a0d
-}
+
 .callout{
     margin: 5rem 0 5rem 0;
 }
@@ -23,14 +17,13 @@ h1{
 }
 
 .button{
-    background-color: #2c1a0d;
-    color: #f9ce29;
+    background-color: #1468a0;
+    color: #cfced6;
     box-shadow: 3px 3px 2px #a4a2a9;
 }
 .button:hover{
-
-    background-color: #f9ce29;
-    color: #2c1a0d;
+    background-color: #cfced6;
+    color: #1468a0;
     box-shadow: 3px 3px 2px #a4a2a9;
 }
 
@@ -49,7 +42,10 @@ h1{
 }
 
 .fi-plus{
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #1468a0, 0 0 30px #E33100, 0 0 40px #E33100, 0 0 50px #E33100, 0 0 75px #E33100;
+    text-shadow: 0 0 5px #fff, 0 0 10px #14a9f0, 0 0 15px #1468a0, 0 0 20px #1468a0, 0 0 30px #E33100, 0 0 40px #E33100, 0 0 50px #E33100, 0 0 75px #E33100;
+}
+.fi-power{
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff3a44, 0 0 15px #ff1521, 0 0 20px #a00004, 0 0 30px #E33100, 0 0 40px #E33100, 0 0 50px #E33100, 0 0 75px #E33100;
 }
 
 /*
@@ -72,11 +68,6 @@ SMALL SCREEN NAV
 }
 
 
-
-
-.sjena img:hover{
-    box-shadow: 1px 2px 2px #2c1a0d;
-}
 .pad {
     padding: 30px;
 }

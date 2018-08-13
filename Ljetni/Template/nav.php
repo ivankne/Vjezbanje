@@ -28,12 +28,12 @@
 
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
-                    <a href="<?php echo $putanjaAPP; ?>private/db/clanovi.php">
+                    <a href="<?php echo $putanjaAPP; ?>private/clanovi/clanovi.php">
                         <i class="fi-torsos-all"> </i>
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo $putanjaAPP; ?>private/db/dogadaji.php">
+                    <a href="<?php echo $putanjaAPP; ?>private/dogadaji/dogadaji.php">
                         <i class="fi-calendar"> </i>
                     </a>
                 </li>
@@ -75,12 +75,12 @@
         <ul class="menu vertical">
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
-                    <a href="<?php echo $putanjaAPP; ?>private/db/clanovi.php">
+                    <a href="<?php echo $putanjaAPP; ?>private/clanovi/clanovi.php">
                         <i class="fi-torsos-all"> Članovi</i>
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo $putanjaAPP; ?>private/db/dogadaji.php">
+                    <a href="<?php echo $putanjaAPP; ?>private/dogadaji/dogadaji.php">
                         <i class="fi-calendar"> Događaji</i>
                     </a>
                 </li>
