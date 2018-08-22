@@ -32,15 +32,15 @@
             <?php include_once "Template/nav.php" ?>
         </div>
 
-        <div class="grid-x mjesto">
-            <div class="cell small-12 pad text-center">
+        <div class="grid-x pad">
+            <div class="cell small-12 text-center">
                 <h1>Dobro došli na Gazzer!  <i class="fi-calendar"></i></h1>
                     <h3>Jednostavni organizator za praćenje i evidenciju vaših nastupa :)</h3>
             </div>
 
             <?php if(!isset( $_SESSION[$idAPP."o"])): ?>
-                <div class="cell sjena small-12 pad text-center">
-                    <h3>Prijavi se <a class="zuti" href="login.php">ovdje</a></h3>
+                <div class="cell sjena small-12 text-center">
+                    <h3>Prijavi se <a class="zuti" href="login.php">ovdje   <i class="fi-plus"> </i></a></h3>
                 </div>
             <?php endif;?>
 

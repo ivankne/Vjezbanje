@@ -10,7 +10,7 @@ if(isset($_POST["add"])){
                           (:sifra,:ime,:prezime,:email,:bend,:koeficijent,:aktivan)");
     unset($_POST["add"]);
     $izraz->execute($_POST);
-    header("location: clanovi.php");
+    header("location: bend.php");
 }
 
 ?>

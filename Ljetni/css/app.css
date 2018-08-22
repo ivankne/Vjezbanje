@@ -3,6 +3,10 @@
     padding: 0;
     box-shadow: 4px 6px 20px #2c1a0d;
 }
+
+.pad{
+    padding: 2rem 2rem;
+}
 h1{
     color:#cfced6;
 }
@@ -28,20 +32,20 @@ h1{
 }
 
 /*Large screen nav*/
-.header .veliki ul li{
-    padding: 10px 1px;
+.header .show-for-large ul li{
+    padding: 1rem 0.5rem;
 }
-.header .veliki ul li a{
+.header .show-for-large ul li a{
     color: #cfced6;
     text-shadow: 8px 5px 2px #000;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
-.header .veliki ul li a:hover{
+.header ul li a:hover{
     color: #a4a2a9;
 }
 
-.fi-plus{
+.header .fi-plus{
     text-shadow: 0 0 5px #fff, 0 0 10px #14a9f0, 0 0 15px #1468a0, 0 0 20px #1468a0, 0 0 30px #E33100, 0 0 40px #E33100, 0 0 50px #E33100, 0 0 75px #E33100;
 }
 .fi-power{
@@ -51,7 +55,12 @@ h1{
 /*
 SMALL SCREEN NAV
  */
-
+.show-for-small-only .menu ul li{
+    width: 1rem;
+}
+.show-for-small-only ul li a{
+  color: #0d1932;
+}
 .fi-list {
 	color: #cfced6;
 }
@@ -67,12 +76,23 @@ SMALL SCREEN NAV
     text-shadow: 1px 1px #0d1932;
 }
 
+.contact{
+    width: 100%;
 
-.pad {
-    padding: 30px;
+}
+label{
+    font-weight: bold;
+}
+#message{
+    height: 10rem;
 }
 
-.pad h1{
+.header img{
+    height: 4rem;
+    width: 7rem;
+}
+
+.cell h1{
     font-family: 'Playball', cursive;
 }
 .social li{

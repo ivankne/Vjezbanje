@@ -19,8 +19,8 @@
             <?php include_once "Template/nav.php" ?>
         </div>
 
-        <div class="grid-x mjesto">
-            <div class="cell small-6 pad">
+        <div class="grid-x pad">
+            <div class="cell large-6 small-12">
                 <h2>O nama...</h2>
                 <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -53,8 +53,11 @@
             </div>
 
 
-            <div class="cell small-6 pad" id="map">
-
+            <div class="cell large-6 small-12" id="map">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d357774.5045411449!2d17.91058985928774!3d45.527925182681976!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475d1277db71d887%3A0xe6f4f53e4e8f668d!2sVelimirovac!5e0!3m2!1sen!2shr!4v1532078836117"
+                        width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
+                </iframe>
             </div>
 
         </div>

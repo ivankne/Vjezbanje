@@ -17,12 +17,12 @@ if(!isset($_GET["sifra"]) && !isset($_POST["sifra"])){
 
 
 if(isset($_POST["edit"])){
-  $izraz = $veza->prepare("update clan set ime=:ime,prezime=:prezime,email=:email,koeficijent=:koeficijent where sifra=:sifra;");
+  $izraz = $veza->prepare("update bend set sifra=:sifra,username=:username,email=:email,lozinka=:lozinka,naziv_benda=:naziv_benda,logo=:logo where sifra=:sifra;");
   unset($_POST["edit"]);
   $izraz->execute($_POST);
   header("location: bend.php");
 }else{
-  $izraz = $veza->prepare("select * from clan where sifra=:sifra");
+  $izraz = $veza->prepare("select * from bend where sifra=:sifra");
   $izraz->execute($_GET);
   $o=$izraz->fetch(PDO::FETCH_OBJ);
 }
@@ -44,28 +44,25 @@ if(isset($_POST["edit"])){
         <form class="callout text-center" action="<?php echo $_SERVER["PHP_SELF"] ?>" method="post">
 
             <div class="floated-label-wrapper">
-                <label for="ime">ime</label>
-                <input value="<?php echo $o->ime ?>" autocomplete="off" type="text" id="ime" name="ime" placeholder="ime">
+                <label for="username">Korisničko ime</label>
+                <input value="<?php echo $o->username ?>" autocomplete="off" type="text" id="username" name="username" placeholder="username">
             </div>
             <div class="floated-label-wrapper">
-                <label for="prezime">prezime</label>
-                <input value="<?php echo $o->prezime ?>" autocomplete="off" type="text"  id="prezime" name="prezime" placeholder="prezime" >
+                <label for="email">email</label>
+                <input value="<?php echo $o->email ?>" autocomplete="off" type="email"  id="email" name="email" placeholder="email" >
             </div>
             <div class="floated-label-wrapper">
-                <label for="email">Datum email</label>
-                <input value="<?php echo $o->email ?>" autocomplete="off" type="email"  id="email" name="email" >
+                <label for="lozinka">lozinka</label>
+                <input value="<?php echo $o->lozinka ?>" autocomplete="off" type="password"  id="lozinka" name="lozinka" >
             </div>
             <div class="floated-label-wrapper">
-                <label for="koeficijent">koeficijent</label>
-                <input  value="<?php echo $o->koeficijent ?>" autocomplete="off" type="number" step="0.1" id="koeficijent" name="koeficijent" >
+                <label for="naziv_benda">Naziv benda</label>
+                <input  value="<?php echo $o->naziv_benda ?>" autocomplete="off" type="text" id="naziv_benda" name="naziv_benda" >
             </div>
             <div class="floated-label-wrapper">
-                <label for="aktivan">aktivan</label>
-                <input  value="<?php echo $o->aktivan ?>" autocomplete="off" type="text" id="aktivan" name="aktivan" >
+                <label for="logo">logo</label>
+                <input  value="<?php echo $o->logo ?>" autocomplete="off" type="text" id="logo" name="logo" >
             </div>
-
-            <input type="hidden" name="sifra" value="<?php echo $o->sifra ?>" />
-            <input type="hidden" name="bend" value="<?php echo $o->bend ?>" />
             <input class="button expanded" type="submit" name="edit" value="Promijeni">
         </form>
         </div>

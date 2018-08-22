@@ -15,51 +15,55 @@ if(!isset($_SESSION[$idAPP."o"])){
             <?php include_once "../../Template/nav.php" ?>
         </div>
 
-        <div class="grid-x">
+        <div class="grid-x mjesto">
+
             <div class="cell small-12 pad">
-                <h2 class="text-center">Članovi</h2>
-                <!--<a href="new.php" class="success button expanded">Dodaj</a>-->
+                <h2 class="text-center">Bendovi</h2>
+                <a href="new.php" class="success button expanded">Dodaj</a>
                 <?php
 
-                    $izraz = $veza->prepare("select a.sifra,a.ime,a.prezime,
-                        a.email, a.bend, a.koeficijent, a.aktivan, count(b.clan) /*b nema sifru!?*/ as clanova
-                         from clan a left join dog_clan b
-                        on a.sifra=b.clan group by a.sifra,a.ime,a.prezime,
-                        a.email, a.bend, a.koeficijent, a.aktivan");
+                    $izraz = $veza->prepare("select a.sifra,a.username,a.email,
+                        a.lozinka, a.naziv_benda, a.logo, count(b.sifra) as bendova
+                         from bend a left join dogadaj b
+                        on a.sifra=b.bend group by a.sifra,a.username,a.email,
+                        a.lozinka, a.naziv_benda, a.logo");
                     $izraz->execute();
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
-
                 <table class="responsive">
                     <thead>
                     <tr>
-                        <th>Ime</th>
-                        <th>Prezime</th>
-                        <th>Email</th>
-                        <th>Koeficijent</th>
+                        <th>username</th>
+                        <th>email</th>
+                        <th>lozinka</th>
+                        <th>naziv_benda</th>
+                        <th>logo</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach($rezultati as $red):?>
                         <tr>
-                            <td><?php echo $red->ime; ?></td>
-                            <td><?php echo $red->prezime; ?></td>
+                            <td><?php echo $red->username; ?></td>
                             <td><?php echo $red->email; ?></td>
-                            <td><?php echo $red->koeficijent; ?></td>
-                            <!--<td>
+                            <td><?php echo $red->lozinka; ?></td>
+                            <td><?php echo $red->naziv_benda; ?></td>
+                            <td><?php echo $red->logo; ?></td>
+                            <td>
                                 <a href="edit.php?sifra=<?php echo $red->sifra; ?>">
                                     <i class="fi-page-edit"></i>
                                 </a>
-                                <?php if($red->clanova==0): ?>
-                                    <a onclick="return confirm('Sigurno obrisati <?php echo $red->ime?>')" href="delete.php?sifra=<?php echo $red->sifra; ?>">
+                                <?php if($red->bendova==0): ?>
+                                    <a onclick="return confirm('Sigurno obrisati <?php echo $red->naziv_benda?>')" href="delete.php?sifra=<?php echo $red->sifra; ?>">
                                         <i class="fi-trash" style="color: red;"></i>
                                     </a>
                                 <?php endif;?>
-                            </td>-->
+                            </td>
                         </tr>
                     <?php endforeach;?>
                     </tbody>
                 </table>
+
 
             </div>
 

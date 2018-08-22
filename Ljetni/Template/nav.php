@@ -1,24 +1,11 @@
-<!--<div class="title-bar" data-responsive-toggle="nav" data-hide-for="small">
-    <button class="menu-icon" type="button" data-toggle="nav"></button>
-</div>
-<ul class="align-right vertical medium-horizontal menu">
-    <li><a href="index.php">Početna</a></li>
-    <li><a href="#">prvi</a></li>
-    <li><a href="#">prvi</a></li>
-    <li><a href="login.php">Prijavi se!</a></li>
-</ul>
--->
-
-
-
-<div class=" veliki show-for-large grid-x">
-    <div class="cell small-1 pad">
+<div class="show-for-large grid-x">
+    <div class="cell small-1 logo">
         <img src="<?php echo $putanjaAPP; ?>img/logo.svg">
     </div>
-    <div class="cell small-5 pad">
+    <div class="cell small-5">
        <h1>Gazzer</h1>
     </div>
-    <div class="cell small-6 pad">
+    <div class="cell small-6">
         <ul class="align-right vertical medium-horizontal menu">
             <li>
                 <a href="<?php echo $putanjaAPP;?>index.php">
@@ -27,6 +14,11 @@
             </li>
 
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
+                <li>
+                    <a href="<?php echo $putanjaAPP; ?>private/bend/bend.php">
+                        <i class="fi-music"> </i>
+                    </a>
+                </li>
                 <li>
                     <a href="<?php echo $putanjaAPP; ?>private/clanovi/clanovi.php">
                         <i class="fi-torsos-all"> </i>
@@ -47,7 +39,7 @@
             </li>
             <li>
                 <a href="<?php echo $putanjaAPP; ?>about.php">
-                    <i class="fi-music"> </i>
+                    <i class="fi-marker"> </i>
                 </a>
             </li>
             <li>
@@ -67,7 +59,7 @@
 </div>
 
 <div class="show-for-small-only">
-    <div class="cell small-6 pad text-center">
+    <div class="cell small-6 text-center">
         <h1>Gazzer</h1>
     </div>
 <ul class="vertical menu" data-responsive-menu="drilldown medium-accordion"  data-dropdown-menu>
@@ -75,41 +67,41 @@
         <ul class="menu vertical">
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
+                    <a href="<?php echo $putanjaAPP; ?>private/bend/bend.php">
+                        <i class="fi-music"> </i>
+                    </a>
+                </li>
+                <li>
                     <a href="<?php echo $putanjaAPP; ?>private/clanovi/clanovi.php">
-                        <i class="fi-torsos-all"> Članovi</i>
+                        <i class="fi-torsos-all"> </i>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo $putanjaAPP; ?>private/dogadaji/dogadaji.php">
-                        <i class="fi-calendar"> Događaji</i>
+                        <i class="fi-calendar"> </i>
                     </a>
                 </li>
             <?php endif;?>
 
             <li>
-                <a href="<?php echo $putanjaAPP;?>index.php">
-                    <i class="fi-home"> Početna</i>
-                </a>
-            </li>
-
-            <li>
                 <a href="<?php echo $putanjaAPP;?>contact.php">
-                    <i class="fi-telephone"> Kontakt</i>
+                    <i class="fi-telephone"> </i>
+
                 </a>
             </li>
             <li>
-                <a href="<?php echo $putanjaAPP;?>about.php">
-                    <i class="fi-music"> O nama</i>
+                <a href="<?php echo $putanjaAPP; ?>about.php">
+                    <i class="fi-marker"> </i>
                 </a>
             </li>
             <li>
                 <?php if(!isset( $_SESSION[$idAPP."o"])): ?>
                     <a href="<?php echo $putanjaAPP;?>login.php">
-                        <i class="fi-burst-new"> Prijava</i>
+                        <i class="fi-plus"> </i>
                     </a>
                 <?php else: ?>
                     <a href="<?php echo $putanjaAPP;?>logout.php">
-                        <i class="fi-power"> Odjava</i>
+                        <i class="fi-power"> </i>
                     </a>
                 <?php endif; ?>
             </li>
