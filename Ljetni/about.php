@@ -31,21 +31,17 @@
                 </p>
                 <ul class="social">
                     <li>
-                    <a href="https://github.com/ivankne/Vjezbanje/tree/master/Ljetni" target="_blank">
+                    <a href="https://raw.githubusercontent.com/ivankne/Vjezbanje/master/Ljetni/era.png" target="_blank" title="ERA dijagram">
                         <i class="fi-database"></i>
                     </a>
                     </li>
                     <li>
-                        <a href="https://github.com/ivankne/Vjezbanje/tree/master/Ljetni" target="_blank">
+                        <a href="https://github.com/ivankne/Vjezbanje/tree/master/Ljetni" target="_blank" title="GitHub">
                             <i class="fi-social-github size-60"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.facebook.com/bechar69" target="_blank">
-                            <i class="fi-social-facebook"></i></li>
-                    </a>
-                    <li>
-                        <a href="https://plus.google.com/117404874896351852490" target="_blank">
+                        <a href="https://plus.google.com/117404874896351852490" target="_blank" title="Google+">
                             <i class="fi-social-google-plus"></i>
                         </a>
                     </li>

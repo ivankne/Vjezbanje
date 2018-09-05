@@ -15,9 +15,9 @@ if(!isset($_SESSION[$idAPP."o"])){
             <?php include_once "../../Template/nav.php" ?>
         </div>
 
-        <div class="grid-x mjesto">
+        <div class="grid-x">
 
-            <div class="cell small-12 pad">
+            <div class="cell large-12 pad">
                 <h2 class="text-center">Bendovi</h2>
                 <a href="new.php" class="success button expanded">Dodaj</a>
                 <?php
@@ -30,7 +30,9 @@ if(!isset($_SESSION[$idAPP."o"])){
                     $izraz->execute();
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
-                <table class="responsive">
+            </div>
+            <div class="cell large-12 small-12 pad">
+                <table class="responsive-card-table unstriped">
                     <thead>
                     <tr>
                         <th>username</th>

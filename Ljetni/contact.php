@@ -42,18 +42,48 @@
 
 
             <div class="cell large-6 small-12 pad">
-                <form class="contact">
+                <!--Slanje emaila http://php.net/manual/en/function.mail.php -->
+
+                <?php
+                if(isset($_POST['submit'])){
+                    $to = "mrtamburaknez@gmail.com"; // this is your Email address
+                    $from = $_POST['vasemail']; // this is the sender's Email address
+                    $imeiprezime = $_POST['imeiprezime'];
+                    $vasemail = $_POST['vasemail'];
+                    $subject = "Form submission";
+                    $message = $imeiprezime . " " . $vasemail . " wrote the following:" . "\n\n" . $_POST['vasaporuka'];
+
+
+                    $headers = "From:" . $from;
+                    mail($to,$subject,$message,$headers);
+
+                    // You can also use header('Location: thank_you.php'); to redirect to another page.
+                    header('Location: bend.php');
+                }
+                ?>
+
+
+                <form method="post" class="contact" name="contactform" >
                     <label class="">Ime i prezime</label>
-                    <input type="text" placeholder="Ime i prezime">
+                    <input type="text" placeholder="Ime i prezime" name="imeiprezime" maxlength="50" size="30">
                     <label>Email</label>
-                    <input type="email" placeholder="Vaš email">
+                    <input type="email" placeholder="Vaš email" name="vasemail" maxlength="80" size="30">
                     <label>Poruka</label>
-                    <textarea name="message" id="message" placeholder="Vaša poruka..."></textarea>
+                    <textarea
+                            id="message" placeholder="Vaša poruka..." name="vasaporuka" maxlength="80"
+                            cols="25" rows="6">
+                    </textarea>
                     <p class="help-text" id="passwordHelpText">Sva polja su obavezna!</p>
-                        <input type="submit" class="button" value="Pošalji" />
-
-
+                        <input type="submit" class="button" data-open="contactpopup" name="submit" value="Pošalji"/>
                 </form>
+            </div>
+
+            <div class="reveal" id="contactpopup" data-reveal>
+                <h1>Hvala!</h1>
+                <p class="lead">Vaša poruka je uspješno poslana.</p>
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
         </div>

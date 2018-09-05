@@ -17,7 +17,7 @@ if(!isset($_GET["sifra"]) && !isset($_POST["sifra"])){
 
 
 if(isset($_POST["edit"])){
-  $izraz = $veza->prepare("update bend set sifra=:sifra,username=:username,email=:email,lozinka=:lozinka,naziv_benda=:naziv_benda,logo=:logo where sifra=:sifra;");
+  $izraz = $veza->prepare("update bend set username=:username,email=:email,lozinka=:lozinka,naziv_benda=:naziv_benda,logo=:logo where sifra=:sifra;");
   unset($_POST["edit"]);
   $izraz->execute($_POST);
   header("location: bend.php");
