@@ -17,7 +17,8 @@ if(!isset($_GET["sifra"]) && !isset($_POST["sifra"])){
 
 
 if(isset($_POST["edit"])){
-  $izraz = $veza->prepare("update bend set username=:username,email=:email,lozinka=:lozinka,naziv_benda=:naziv_benda,logo=:logo where sifra=:sifra;");
+  $izraz = $veza->prepare("update bend set 
+  username=:username,email=:email,lozinka=:lozinka,naziv_benda=:naziv_benda,logo=:logo where sifra=:sifra;");
   unset($_POST["edit"]);
   $izraz->execute($_POST);
   header("location: bend.php");
@@ -63,6 +64,7 @@ if(isset($_POST["edit"])){
                 <label for="logo">logo</label>
                 <input  value="<?php echo $o->logo ?>" autocomplete="off" type="text" id="logo" name="logo" >
             </div>
+            <input type="hidden" name="sifra" value="<?php echo $o->sifra ?>" />
             <input class="button expanded" type="submit" name="edit" value="Promijeni">
         </form>
         </div>

@@ -45,6 +45,56 @@
             <?php endif;?>
 
 
+<!--tablica koja ce prikazivati prihode nastupa od prijavljenog korisnika-->
+               <div class="cell pad small-12 large-12 text-center">
+
+                <?php
+                    if(!empty($_SESSION[$idAPP."o"])):
+                        print "Pozdrav {$_SESSION[$idAPP."o"]},ovdje možeš vidjeti svoje prihode od nastupa...";
+                ?>
+                <br>
+                <br>
+                   <table>
+                       <tr>
+                           <th>Događaj</th>
+                           <th>Cijena</th>
+                           <th>Zarađeno</th>
+                           <th></th>
+                       </tr>
+                       <tbody>
+                       <tr>
+                           <td>Nesto</td>
+                           <td>Nesto</td>
+                           <td>Nesto</td>
+
+                       </tr>
+                       <tr>
+                           <td>Nesto</td>
+                           <td>Nesto</td>
+                           <td>Nesto</td>
+
+                       </tr>
+                       <tr>
+                           <td>Nesto</td>
+                           <td>Nesto</td>
+                           <td>Nesto</td>
+                       </tr>
+                       </tbody>
+                       <tbody>
+                       <tr>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td>Ukupno=</td>
+                       </tr>
+                       </tbody>
+                   </table>
+                <?php
+                    else:
+                        print "";
+                    endif;
+                ?>
+               </div>
         </div>
         <footer>
             <?php include_once "Template/footer.php" ?>

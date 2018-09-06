@@ -6,7 +6,9 @@ body{
     padding: 0;
     box-shadow: 4px 6px 20px #2c1a0d;
 }
-
+.is-dropdown-submenu{
+    min-width: 3rem;
+}
 .pad{
     padding: 2rem 2rem;
 }
@@ -107,6 +109,8 @@ label{
     font-size: 4rem;
     color: #000;
 }
+
+
 
 footer{
     box-shadow: 3px 5px 20px #a4a2a9;

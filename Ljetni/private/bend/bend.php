@@ -31,7 +31,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
             </div>
-            <div class="cell large-12 small-12 pad">
+            <div class="cell small-12 pad">
                 <table class="responsive-card-table unstriped">
                     <thead>
                     <tr>
@@ -65,8 +65,6 @@ if(!isset($_SESSION[$idAPP."o"])){
                     <?php endforeach;?>
                     </tbody>
                 </table>
-
-
             </div>
 
         </div>

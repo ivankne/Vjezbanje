@@ -42,9 +42,11 @@
 
 
             <div class="cell large-6 small-12 pad">
-                <!--Slanje emaila http://php.net/manual/en/function.mail.php -->
+                <!--Slanje emaila http://php.net/manual/en/function.mail.php
+                    NE RADI!!?
+                -->
 
-                <?php
+                <?php/*
                 if(isset($_POST['submit'])){
                     $to = "mrtamburaknez@gmail.com"; // this is your Email address
                     $from = $_POST['vasemail']; // this is the sender's Email address
@@ -59,7 +61,7 @@
 
                     // You can also use header('Location: thank_you.php'); to redirect to another page.
                     header('Location: bend.php');
-                }
+                }*/
                 ?>
 
 

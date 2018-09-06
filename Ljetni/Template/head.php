@@ -24,10 +24,10 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="<?php echo $putanjaAPP; ?>img/favicon/manifest.json">
 <meta name="msapplication-TileImage" content="<?php echo $putanjaAPP; ?>img/favicon/ms-icon-144x144.png">
-<link rel="stylesheet" href="<?php echo $putanjaAPP; ?>css/responsive-tables.css">
 <link rel="stylesheet" href="<?php echo $putanjaAPP; ?>icons/foundation-icons.css" />
 <link href="https://fonts.googleapis.com/css?family=Playball" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo $putanjaAPP; ?>css/foundation.css">
 <link rel="stylesheet" href="<?php echo $putanjaAPP; ?>css/app.css">
+<link rel="stylesheet" href="<?php echo $putanjaAPP; ?>css/responsive-tables.css">
 
 
