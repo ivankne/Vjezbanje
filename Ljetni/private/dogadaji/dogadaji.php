@@ -21,11 +21,16 @@ if(!isset($_SESSION[$idAPP."o"])){
                <!-- <a href="new.php" class="success button expanded">Dodaj</a> -->
                     <?php
 
-                    $izraz = $veza->prepare(" select a.sifra,a.naziv,a.napomena,
-                        a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend, count(b.dogadaj) /*b nema sifru!?*/ as dogadaja
+                    $izraz = $veza->prepare(" select a.sifra,a.naziv, a.napomena,
+                        a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend, 
+                        count(b.dogadaj) /*b nema sifru!?*/ as dogadaja
                          from dogadaj a left join dog_clan b
                         on a.sifra=b.dogadaj group by a.sifra,a.naziv,a.napomena,
                         a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend");
+                    //select a.naziv, a.napomena, a.datum_pocetka, a.datum_zavrsetka
+                    //                    a.cijena, a.narucitelj, a.adresa
+                    //                    from dogadaj a left join bend b
+                    //                    on a.sifra=b.bend
                     $izraz->execute();
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
@@ -40,6 +45,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                         <th>Cijena</th>
                         <th>Narucitelj</th>
                         <th>Adresa</th>
+                        <th>Bend</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -52,6 +58,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                             <td><?php echo $red->cijena; ?></td>
                             <td><?php echo $red->narucitelj; ?></td>
                             <td><?php echo $red->adresa; ?></td>
+                            <td title="<?php echo "Bend: " . $red->naziv_benda; ?>"><?php echo $red->bend; ?></td>
                             <!--<td>
                                 <a href="edit.php?sifra=<?php echo $red->sifra; ?>">
                                     <i class="fi-page-edit"></i>

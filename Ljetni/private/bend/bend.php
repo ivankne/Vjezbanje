@@ -32,7 +32,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                     ?>
             </div>
             <div class="cell small-12 pad">
-                <table class="responsive-card-table unstriped">
+                <table class="responsive">
                     <thead>
                     <tr>
                         <th>username</th>

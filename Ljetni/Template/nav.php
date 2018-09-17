@@ -65,6 +65,11 @@
 <ul class="vertical menu" data-responsive-menu="drilldown medium-accordion"  data-dropdown-menu>
     <li><a href="#"><i class="fi-list"></i></a>
         <ul class="menu vertical">
+            <li>
+                <a href="<?php echo $putanjaAPP;?>index.php">
+                    <i class="fi-home"> </i>
+                </a>
+            </li>
             <?php if(isset( $_SESSION[$idAPP."o"])): ?>
                 <li>
                     <a href="<?php echo $putanjaAPP; ?>private/bend/bend.php">

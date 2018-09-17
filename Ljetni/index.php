@@ -51,47 +51,41 @@
                 <?php
                     if(!empty($_SESSION[$idAPP."o"])):
                         print "Pozdrav {$_SESSION[$idAPP."o"]},ovdje možeš vidjeti svoje prihode od nastupa...";
-                ?>
-                <br>
-                <br>
-                   <table>
-                       <tr>
-                           <th>Događaj</th>
-                           <th>Cijena</th>
-                           <th>Zarađeno</th>
-                           <th></th>
-                       </tr>
-                       <tbody>
-                       <tr>
-                           <td>Nesto</td>
-                           <td>Nesto</td>
-                           <td>Nesto</td>
 
-                       </tr>
-                       <tr>
-                           <td>Nesto</td>
-                           <td>Nesto</td>
-                           <td>Nesto</td>
 
-                       </tr>
-                       <tr>
-                           <td>Nesto</td>
-                           <td>Nesto</td>
-                           <td>Nesto</td>
-                       </tr>
-                       </tbody>
-                       <tbody>
-                       <tr>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td>Ukupno=</td>
-                       </tr>
-                       </tbody>
-                   </table>
-                <?php
+                         $izraz = $veza->prepare("
+                            select a.naziv, a.datum_pocetka,a.cijena,a.bend, b.naziv_benda as Bend 
+                            from dogadaj a left join
+                            bend b on b.naziv_benda=a.bend");
+                        $izraz->execute();
+                        $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
+                        ?>
+                       <br>
+                       <br>
+                       <table class="responsive">
+
+                           <tr>
+                               <th>Naziv</th>
+                               <th>Datum</th>
+                               <th>Cijena</th>
+                               <th>Bend</th>
+                           </tr>
+                           <tbody>
+                           <?php foreach($rezultati as $red):?>
+                           <tr>
+                               <td><?php echo $red->naziv; ?></td>
+                               <td><?php echo $red->datum_pocetka; ?></td>
+                               <td><?php echo $red->cijena; ?></td>
+                               <td><?php echo $red->bend; ?></td>
+
+                           </tr>
+                           <?php endforeach; ?>
+                           </tbody>
+                       </table>
+                       <?php
+
                     else:
-                        print "";
+                        print " ";
                     endif;
                 ?>
                </div>
@@ -99,6 +93,8 @@
         <footer>
             <?php include_once "Template/footer.php" ?>
         </footer>
+        </div>
+
     </div>
 
 <?php include_once "Template/script.php" ?>
