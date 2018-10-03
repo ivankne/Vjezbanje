@@ -18,7 +18,7 @@ if(($_POST["korisnik"]==="ivan" && $_POST["lozinka"]==="i")
 //pusti dalje
 
 $_SESSION[$idAPP."o"]= $_POST["korisnik"];
-header("location: private/bend/bend.php");
+header("location: index.php");
 }else{
 header("location: login.php?poruka=1");
 }

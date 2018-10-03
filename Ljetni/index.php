@@ -32,10 +32,10 @@
             <?php include_once "Template/nav.php" ?>
         </div>
 
-        <div class="grid-x pad">
+        <div class="grid-x">
             <div class="cell small-12 text-center">
-                <h1>Dobro došli na Gazzer!  <i class="fi-calendar"></i></h1>
-                    <h3>Jednostavni organizator za praćenje i evidenciju vaših nastupa :)</h3>
+                <h1 style="padding-top: 1rem">Dobro došli na Gazzer!  <i class="fi-calendar"></i></h1>
+                    <h3 class="pad">Jednostavni organizator za praćenje i evidenciju vaših nastupa :)</h3>
             </div>
 
             <?php if(!isset( $_SESSION[$idAPP."o"])): ?>
@@ -46,7 +46,7 @@
 
 
 <!--tablica koja ce prikazivati prihode nastupa od prijavljenog korisnika-->
-               <div class="cell pad small-12 large-12 text-center">
+               <div class="cell pad small-12 text-center">
 
                 <?php
                     if(!empty($_SESSION[$idAPP."o"])):
@@ -54,9 +54,9 @@
 
 
                          $izraz = $veza->prepare("
-                            select a.naziv, a.datum_pocetka,a.cijena,a.bend, b.naziv_benda as Bend 
-                            from dogadaj a left join
-                            bend b on b.naziv_benda=a.bend");
+                            select a.naziv, a.datum_pocetka, a.cijena,a.bend, b.naziv_benda as Bend 
+                            from dogadaj a left join bend b 
+                            on b.naziv_benda=a.bend");
                         $izraz->execute();
                         $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                         ?>
