@@ -18,15 +18,13 @@ if(!isset($_SESSION[$idAPP."o"])){
         <div class="grid-x">
             <div class="cell small-12 pad">
                 <h2 class="text-center">Događaji</h2>
-               <!-- <a href="new.php" class="success button expanded">Dodaj</a> -->
+                <a href="new.php" class="success button expanded">Dodaj</a>
                     <?php
 
-                    $izraz = $veza->prepare(" select a.sifra,a.naziv, a.napomena,
-                        a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend, 
-                        count(b.dogadaj) /*b nema sifru!?*/ as dogadaja
-                         from dogadaj a left join dog_clan b
-                        on a.sifra=b.dogadaj group by a.sifra,a.naziv,a.napomena,
-                        a.datum_pocetka, a.datum_zavrsetka,a.cijena, a.narucitelj,a.adresa, a.bend");
+                    $izraz = $veza->prepare(" select a.naziv_benda as bend, b.sifra,b.naziv, b.napomena,
+                        b.datum_pocetka, b.datum_zavrsetka,b.cijena, b.narucitelj,b.adresa 
+                        from bend a left join dogadaj b on a.sifra=b.bend                       
+                         order by datum_pocetka asc");
                     //select a.naziv, a.napomena, a.datum_pocetka, a.datum_zavrsetka
                     //                    a.cijena, a.narucitelj, a.adresa
                     //                    from dogadaj a left join bend b
@@ -58,17 +56,17 @@ if(!isset($_SESSION[$idAPP."o"])){
                             <td><?php echo $red->cijena; ?></td>
                             <td><?php echo $red->narucitelj; ?></td>
                             <td><?php echo $red->adresa; ?></td>
-                            <td title="<?php echo "Bend: " . $red->naziv_benda; ?>"><?php echo $red->bend; ?></td>
-                            <!--<td>
+                            <td><?php echo $red->bend; ?></td>
+                            <td>
                                 <a href="edit.php?sifra=<?php echo $red->sifra; ?>">
                                     <i class="fi-page-edit"></i>
                                 </a>
-                                <?php if($red->dogadaja==0): ?>
+                                <?php if($red->bend==0): ?>
                                     <a onclick="return confirm('Sigurno obrisati <?php echo $red->naziv?>')" href="delete.php?sifra=<?php echo $red->sifra; ?>">
                                         <i class="fi-trash" style="color: red;"></i>
                                     </a>
                                 <?php endif;?>
-                            </td>-->
+                            </td>
                         </tr>
                     <?php endforeach;?>
                     </tbody>

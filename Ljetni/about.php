@@ -31,20 +31,23 @@
                 </p>
                 <ul class="social">
                     <li>
-                    <a href="https://raw.githubusercontent.com/ivankne/Vjezbanje/master/Ljetni/era.png" target="_blank" title="ERA dijagram">
-                        <i class="fi-database"></i>
-                    </a>
+                        <a href="#" title="ERA">
+                            <i class="fi-database size-60" data-open="myModal"></i>
+                        </a>
+                        <div id="myModal" class="reveal-modal text-center" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                            <h2 id="modalTitle">ERA DIJAGRAM</h2>
+                            <img src="img/era.png">
+                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                        </div>
+
                     </li>
                     <li>
                         <a href="https://github.com/ivankne/Vjezbanje/tree/master/Ljetni" target="_blank" title="GitHub">
                             <i class="fi-social-github size-60"></i>
                         </a>
                     </li>
-                    <li>
-                        <a href="https://plus.google.com/117404874896351852490" target="_blank" title="Google+">
-                            <i class="fi-social-google-plus"></i>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
 

@@ -10,16 +10,18 @@ header("location: login.php?poruka=2");
 exit;
 }
 
-if(($_POST["korisnik"]==="ivan" && $_POST["lozinka"]==="i")
-||
-($_POST["korisnik"]==="edunova" && $_POST["lozinka"]==="e")
-){
+$izraz=$veza->prepare("select * from operater where email=:email");
+$izraz->execute(array("email"=>$_POST["korisnik"]));
 
-//pusti dalje
+$o = $izraz->fetch(PDO::FETCH_OBJ);
 
-$_SESSION[$idAPP."o"]= $_POST["korisnik"];
-header("location: index.php");
+
+if($o!=null && $o->lozinka==password_verify($_POST["lozinka"],$o->lozinka)){
+    //pusti dalje
+    $o->lozinka="";
+    $_SESSION[$idAPP."o"]= $o;
+    header("location: index.php");
 }else{
-header("location: login.php?poruka=1");
+    header("location: login.php?poruka=1");
 }
 

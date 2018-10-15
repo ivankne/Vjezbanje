@@ -50,11 +50,11 @@
                 <h2>Prijavi se</h2>
                 <label for="korisnik">Korisničko ime</label>
                 <div class="floated-label-wrapper">
-                    <input type="text" id="korisnik" name="korisnik" placeholder="Korisničko ime">
+                    <input type="text" id="korisnik" name="korisnik" placeholder="edunova@edunova.hr">
                 </div>
                 <label for="lozinka">Lozinka</label>
                 <div class="floated-label-wrapper">
-                    <input autocomplete="off" type="password" id="lozinka" name="lozinka" placeholder="Lozinka">
+                    <input autocomplete="off" type="password" id="lozinka" name="lozinka" placeholder="e">
                 </div>
                 <input class="button expanded" type="submit" value="Prijava">
             </form>

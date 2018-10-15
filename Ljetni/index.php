@@ -45,12 +45,12 @@
             <?php endif;?>
 
 
-<!--tablica koja ce prikazivati prihode nastupa od prijavljenog korisnika-->
+<!--graf koji ce prikazivati prihode nastupa od prijavljenog korisnika-->
                <div class="cell pad small-12 text-center">
 
                 <?php
-                    if(!empty($_SESSION[$idAPP."o"])):
-                        print "Pozdrav {$_SESSION[$idAPP."o"]},ovdje možeš vidjeti svoje prihode od nastupa...";
+                    if(isset($_SESSION[$idAPP."o"])):
+                        print "Pozdrav {$_POST["korisnik"]} ,ovdje možeš vidjeti svoje prihode od nastupa...";
 
 
                          $izraz = $veza->prepare("
@@ -62,8 +62,8 @@
                         ?>
                        <br>
                        <br>
-                       <table class="responsive">
 
+                       <table class="responsive">
                            <tr>
                                <th>Naziv</th>
                                <th>Datum</th>
@@ -81,7 +81,7 @@
                            </tr>
                            <?php endforeach; ?>
                            </tbody>
-                       </table>
+                           </table>
                        <?php
 
                     else:

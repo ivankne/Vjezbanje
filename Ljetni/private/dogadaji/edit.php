@@ -17,7 +17,10 @@ if(!isset($_GET["sifra"]) && !isset($_POST["sifra"])){
 
 
 if(isset($_POST["edit"])){
-  $izraz = $veza->prepare("update dogadaj set naziv=:naziv,napomena=:napomena,datum_pocetka=:datum_pocetka,datum_zavrsetka=:datum_zavrsetka,narucitelj=:narucitelj,adresa=:adresa,bend=:bend where sifra=:sifra;");
+  $izraz = $veza->prepare("update dogadaj set 
+    naziv=:naziv,napomena=:napomena,datum_pocetka=:datum_pocetka,
+    datum_zavrsetka=:datum_zavrsetka,narucitelj=:narucitelj,
+    adresa=:adresa,bend=:bend where sifra=:sifra;");
   unset($_POST["edit"]);
   $izraz->execute($_POST);
   header("location: dogadaji.php");
@@ -67,10 +70,7 @@ if(isset($_POST["edit"])){
                 <label for="adresa">adresa</label>
                 <input  value="<?php echo $o->adresa ?>" autocomplete="off" type="text" id="adresa" name="adresa" >
             </div>
-            <div class="floated-label-wrapper">
-                <label for="adresa">adresa</label>
-                <input  value="<?php echo $o->adresa ?>" autocomplete="off" type="text" id="adresa" name="adresa" >
-            </div>
+
             <input class="button expanded" type="submit" name="edit" value="Promijeni">
         </form>
         </div>

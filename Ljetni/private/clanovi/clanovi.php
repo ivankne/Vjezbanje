@@ -18,7 +18,7 @@ if(!isset($_SESSION[$idAPP."o"])){
         <div class="grid-x">
             <div class="cell small-12 pad">
                 <h2 class="text-center">Članovi</h2>
-                <!--<a href="new.php" class="success button expanded">Dodaj</a>-->
+                <a href="new.php" class="success button expanded">Dodaj</a>
                 <?php
 
                     $izraz = $veza->prepare("select a.sifra,a.ime,a.prezime,
@@ -46,7 +46,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                             <td><?php echo $red->prezime; ?></td>
                             <td><?php echo $red->email; ?></td>
                             <td><?php echo $red->koeficijent; ?></td>
-                            <!--<td>
+                            <td>
                                 <a href="edit.php?sifra=<?php echo $red->sifra; ?>">
                                     <i class="fi-page-edit"></i>
                                 </a>
@@ -55,7 +55,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                                         <i class="fi-trash" style="color: red;"></i>
                                     </a>
                                 <?php endif;?>
-                            </td>-->
+                            </td>
                         </tr>
                     <?php endforeach;?>
                     </tbody>

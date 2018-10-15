@@ -20,7 +20,7 @@ if(isset($_POST["edit"])){
   $izraz = $veza->prepare("update clan set ime=:ime,prezime=:prezime,email=:email,koeficijent=:koeficijent where sifra=:sifra;");
   unset($_POST["edit"]);
   $izraz->execute($_POST);
-  header("location: bend.php");
+  header("location: clanovi.php");
 }else{
   $izraz = $veza->prepare("select * from clan where sifra=:sifra");
   $izraz->execute($_GET);

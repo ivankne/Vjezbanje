@@ -1,3 +1,9 @@
+drop database if exists svirka;
+
+create database svirka default character set utf8;
+#c:\xampp\mysql\bin\mysql -uedunova -pedunova --default_character_set=utf8 < C:\xampp\htdocs\Ljetni\svirka.sql
+
+use svirka;
 create table bend(
 sifra int not null primary key auto_increment,
 username varchar(20) not null,
@@ -34,6 +40,21 @@ dogadaj int not null,
 clan int not null
 );
 
+create table operater(
+sifra int not null primary key auto_increment,
+email varchar(50) not null,
+lozinka varchar(255) not null,
+ime varchar(50) not null,
+prezime varchar(50) not null
+);
+
+insert into operater (email,lozinka,ime,prezime)  
+values ('ivan@gmail.com','26f405ebd1b7afe9b2ad553bc270c4fe',
+'Ivan','Knežević');
+insert into operater (email,lozinka,ime,prezime)  
+values ('edunova@edunova.hr','$2y$12$rLkAxNcXn8dUY1C3MUYVV.qceDJcVbVYZu7El75qAqkCR.cMnuwRC',
+'Pero','Perić');
+
 alter table clan add foreign key (bend) references bend(sifra);
 
 alter table dogadaj add foreign key (bend) references bend(sifra);
@@ -43,8 +64,8 @@ alter table dog_clan add foreign key (dogadaj) references dogadaj(sifra);
 
 insert into bend(sifra,username,email,lozinka,naziv_benda,logo) values
 (null,'tscokanj','tscokanj@gmail.com','cokanj123','Tamburaški sastav Čokanj',null),
-(null,'šokci','šokci@gmail.com','sokci123','Tamburaški sastav Šokci',null),
-(null,'NHT','nht@gmail.com','nht123','Najbolji Hrvatski Tamburaši',null);
+(null,'sokci','sokci@gmail.com','sokci123','Tamburaški sastav Šokci',null),
+(null,'tamburasi','nht@gmail.com','nht123','Najbolji Hrvatski Tamburaši',null);
 
 insert into dogadaj(sifra,naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,narucitelj,adresa,bend) values
 (null,'Svatovi','Ne svirati narodnjake! Kum ima milijune.','2018-07-21 12:00:00','2018-07-22 04:00:00','9000','Tomislav Jakopec','Alojzije Stepinca 39, Našice',1),
