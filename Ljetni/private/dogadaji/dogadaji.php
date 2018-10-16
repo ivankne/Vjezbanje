@@ -2,6 +2,16 @@
 if(!isset($_SESSION[$idAPP."o"])){
     header("location: " . $putanjaAPP . "logout.php");
 }
+
+$stranica=1;
+if(isset($_GET["stranica"])){
+    $stranica=$_GET["stranica"];
+}
+
+$requirement="";
+if(isset($_GET["requirement"])) {
+    $requirement = $_GET["requirement"];
+}
 ?>
 
 <!doctype html>
@@ -21,14 +31,21 @@ if(!isset($_SESSION[$idAPP."o"])){
                 <a href="new.php" class="success button expanded">Dodaj</a>
                     <?php
 
+                    //ako nema unosa nemoj prikazati tablicu od pretrage
+                     if(empty($_GET["requirement"])):
+
                     $izraz = $veza->prepare(" select a.naziv_benda as bend, b.sifra,b.naziv, b.napomena,
                         b.datum_pocetka, b.datum_zavrsetka,b.cijena, b.narucitelj,b.adresa 
                         from bend a left join dogadaj b on a.sifra=b.bend                       
                          order by datum_pocetka asc");
-                    //select a.naziv, a.napomena, a.datum_pocetka, a.datum_zavrsetka
-                    //                    a.cijena, a.narucitelj, a.adresa
-                    //                    from dogadaj a left join bend b
-                    //                    on a.sifra=b.bend
+                    $ukupnoPolaznika = $izraz->fetchColumn();
+                    $ukupnoStranica=ceil($ukupnoPolaznika/10);
+                    if($stranica>$ukupnoStranica){
+                        $stranica=$ukupnoStranica;
+                    }
+                    if($stranica==0){
+                        $stranica=1;
+                    }
                     $izraz->execute();
                     $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                     ?>
@@ -52,7 +69,7 @@ if(!isset($_SESSION[$idAPP."o"])){
                             <td><?php echo $red->naziv; ?></td>
                             <td><?php echo $red->napomena; ?></td>
                             <td><?php echo $red->datum_pocetka; ?></td>
-                            <td><?php echo $red->datum_zavrsetka; ?></td>
+                            <td><?php echo ($red->datum_zavrsetka!=null) ? date("d.m.Y.", strtotime($red->datum_zavrsetka)) : "Nije definirano"; ?></td>
                             <td><?php echo $red->cijena; ?></td>
                             <td><?php echo $red->narucitelj; ?></td>
                             <td><?php echo $red->adresa; ?></td>
@@ -68,10 +85,104 @@ if(!isset($_SESSION[$idAPP."o"])){
                                 <?php endif;?>
                             </td>
                         </tr>
+                    <?php
+                    endforeach;
+                    endif;
+                    ?>
+                    </tbody>
+                </table>
+                <?php
+                if($ukupnoStranica==0){
+                    $ukupnoStranica=1;
+                }
+                ?>
+                <nav aria-label="Pagination" class="text-center">
+                    <ul class="pagination">
+                        <li class="pagination-previous">
+                            <a href="index.php?stranica=<?php echo $stranica-1; ?>&uvjet=<?php echo $requirement ?>" aria-label="Next page">Prethodno <span class="show-for-sr">page</span></a></li>
+                        <li class="current"><span class="show-for-sr">Trenutno na</span> <?php echo $stranica; ?>/<?php echo $ukupnoStranica; ?></li>
+
+                        <li class="pagination-next"><a href="index.php?stranica=<?php echo $stranica+1; ?>&uvjet=<?php echo $requirement ?>" aria-label="Next page">Sljedeće <span class="show-for-sr">page</span></a></li>
+                    </ul>
+                </nav>
+
+                <!-- PRETRAŽIVANJE-->
+                <h4>Pretraži događaje</h4>
+                <?php
+                $requirement="";
+                if(isset($_GET["requirement"])){
+                    $requirement = $_GET["requirement"];
+                }
+                $query =  $veza->prepare("select a.naziv_benda as bend, b.sifra,b.naziv, b.napomena,
+                            b.datum_pocetka, b.datum_zavrsetka,b.cijena, b.narucitelj,b.adresa 
+                            from bend a left join dogadaj b on a.sifra=b.bend 
+                            where concat(b.naziv, ' ' ,b.datum_pocetka, ' ' ,b.cijena, ' ', a.naziv_benda)                      
+                            like :requirement order by datum_pocetka asc");
+                $query->bindValue("requirement","%" . $requirement . "%");
+                $ukupnoPolaznika = $query->fetchColumn();
+                $ukupnoStranica=ceil($ukupnoPolaznika/10);
+                if($stranica>$ukupnoStranica){
+                    $stranica=$ukupnoStranica;
+                }
+                if($stranica==0){
+                    $stranica=1;
+                }
+                $query->execute();
+                $rezultati = $query->fetchAll(PDO::FETCH_OBJ);
+                ?>
+
+                    <form action="<?php echo $_SERVER["PHP_SELF"] ?>">
+                        <input type="text" name="requirement" value="<?php echo $requirement ?>">
+                        <input type="submit" value="Traži" class="button small-only-expanded">
+                    </form>
+
+
+                <?php
+                //ako nema unosa nemoj prikazati tablicu od pretrage
+                 if(!empty($_GET["requirement"])):
+                ?>
+
+                <table class="responsive">
+                    <thead>
+                    <tr>
+
+                        <th>Događaj</th>
+                        <th>Datum</th>
+                        <th>Cijena</th>
+                        <th>Bend</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($rezultati as $red):?>
+                        <tr>
+
+                            <td><?php echo $red->naziv; ?></td>
+                            <td><?php echo $red->datum_pocetka; ?></td>
+                            <td><?php echo $red->cijena; ?></td>
+                            <td><?php echo $red->bend; ?></td>
+
+                        </tr>
                     <?php endforeach;?>
                     </tbody>
                 </table>
+                     <?php
+                     if($ukupnoStranica==0){
+                         $ukupnoStranica=1;
+                     }
+                     ?>
+                     <nav aria-label="Pagination" class="text-center">
+                         <ul class="pagination">
+                             <li class="pagination-previous">
+                                 <a href="index.php?stranica=<?php echo $stranica-1; ?>&uvjet=<?php echo $requirement ?>" aria-label="Next page">Prethodno <span class="show-for-sr">page</span></a></li>
+                             <li class="current"><span class="show-for-sr">Trenutno na</span> <?php echo $stranica; ?>/<?php echo $ukupnoStranica; ?></li>
 
+                             <li class="pagination-next"><a href="index.php?stranica=<?php echo $stranica+1; ?>&uvjet=<?php echo $requirement ?>" aria-label="Next page">Sljedeće <span class="show-for-sr">page</span></a></li>
+                         </ul>
+                     </nav>
+                <?php
+                endif;
+                ?>
             </div>
 
         </div>

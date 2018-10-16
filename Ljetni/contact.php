@@ -42,9 +42,7 @@
 
 
             <div class="cell large-6 small-12 pad">
-                <!--Slanje emaila http://php.net/manual/en/function.mail.php
-                    NE RADI!!?
-                -->
+
 
                 <form method="post" class="contact" id="saljiEmail" name="contactform" action="saljiEmail.php" >
                     <label class="">Ime i prezime</label>

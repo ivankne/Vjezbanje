@@ -49,6 +49,7 @@
                <div class="cell pad small-12 text-center">
 
                 <?php
+                //Ne radi ispis logiranog korisnika
                     if(isset($_SESSION[$idAPP."o"])):
                         print "Pozdrav {$_POST["korisnik"]} ,ovdje možeš vidjeti svoje prihode od nastupa...";
 
