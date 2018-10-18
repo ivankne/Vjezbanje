@@ -49,7 +49,7 @@ prezime varchar(50) not null
 );
 
 insert into operater (email,lozinka,ime,prezime)  
-values ('ivan@gmail.com','26f405ebd1b7afe9b2ad553bc270c4fe',
+values ('ivan@gmail.com','042dc4512fa3d391c5170cf3aa61e6a638f84342',
 'Ivan','Knežević');
 insert into operater (email,lozinka,ime,prezime)  
 values ('edunova@edunova.hr','$2y$12$rLkAxNcXn8dUY1C3MUYVV.qceDJcVbVYZu7El75qAqkCR.cMnuwRC',
@@ -73,7 +73,14 @@ insert into dogadaj(sifra,naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,na
 (null,'Pratnja','Mladoženja je u Čepinu a mlada u Osijeku. Ide se po kuma u 14h. vjenčanje u 17h','2018-08-12 13:00:00','2018-08-12 17:00:00','2500','Pero Perić','kolodvorska 22, Čepin',1),
 (null,'Zabava','Povodom proslave 50 godina NK Njive','2018-05-12 20:00:00','2018-06-12 02:00:00','3500','Miljenko Mumlek','Oranice 3, Njive',1),
 (null,'Zabava','Valentinovska zabava','2018-02-14 20:00:00','2018-02-14 02:00:00','3500','Marija Marić','Zagrebačka ulica 94, Ilok',2),
-(null,'Svatovi','Svirati samo tamburaške pjesme, kum Amte i mladoženja vole pjesmu duša becarska','2018-08-01 19:00:00','2018-08-01 02:00:00','35000','','kneza Branimira 101, Gospić',3);
+(null,'Svatovi','Svirati samo tamburaške pjesme, kum Amte i mladoženja vole pjesmu duša becarska','2018-08-01 19:00:00','2018-08-01 02:00:00','35000','','kneza Branimira 101, Gospić',3),
+(null,'Rođendan','Ovo je napomena','2017-08-01 19:00:00','2018-08-01 02:00:00','35000','','kneza Ivana 11, Zagreb',1),
+(null,'Svatovi','Samo tamburaške pjesme','2018-01-11 19:00:00','2018-08-01 02:00:00','35000','','A.stepinca 101, Dalj',3),
+(null,'Pratnja','Svirati samo tamburaške pjesme','2018-08-01 19:00:00','2018-08-01 02:00:00','35000','','kneza Branimira 101, Gospić',2),
+(null,'Svatovi','Nema himne','2018-08-19 19:00:00','2018-08-01 02:00:00','35000','','brace radic 154, Našice',2),
+(null,'Pratnja','kum Amte','2018-07-21 19:00:00','2018-08-01 02:00:00','35000','','kneza Branimira 101, Gospić',1),
+(null,'Zabava','Divlja zabava','2018-10-20 19:00:00','2018-08-01 02:00:00','35000','','na livadi, Split',1),
+(null,'Zabava','Lovačka','2018-08-01 19:00:00','2018-08-01 02:00:00','35000','','kneza Branimira 101, Gospić',3);
 
 insert into clan(sifra,ime,prezime,email,bend,koeficijent,aktivan) values
 (null,'Željko','Sinjeri','sinjeriz@gmail.com',1,'0.16',true),

@@ -48,9 +48,9 @@
         <div class="large-12 cell text-center">
             <form class="callout text-center" action="<?php echo $putanjaAPP . "authorize.php" ?>" method="post">
                 <h2>Prijavi se</h2>
-                <label for="korisnik">Korisničko ime</label>
+                <label for="email">Email</label>
                 <div class="floated-label-wrapper">
-                    <input type="text" id="korisnik" name="korisnik" placeholder="edunova@edunova.hr">
+                    <input type="email" id="email" name="email" placeholder="edunova@edunova.hr">
                 </div>
                 <label for="lozinka">Lozinka</label>
                 <div class="floated-label-wrapper">

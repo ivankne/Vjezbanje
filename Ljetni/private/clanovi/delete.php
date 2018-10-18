@@ -20,4 +20,4 @@ if(!isset($_GET["sifra"])){
   $izraz = $veza->prepare("delete from clan
                           where sifra=:sifra;");
   $izraz->execute($_GET);
-  header("location: bend.php");
+  header("location: clanovi.php");

@@ -11,9 +11,11 @@ if(!isset($_SESSION[$idAPP."o"])){
   </head>
   <body>
     <div class="grid-container">
+
         <div class="header">
             <?php include_once "../../Template/nav.php" ?>
         </div>
+        <h1>NEVAŽNA STRANICA... za sada</h1>
 
         <div class="grid-x">
 

@@ -1,17 +1,17 @@
 <?php
-if(!isset($_POST["korisnik"])){
+if(!isset($_POST["email"])){
 exit;
 }
 
 include_once "config.php";
 
-if($_POST["korisnik"]===""){
+if($_POST["email"]===""){
 header("location: login.php?poruka=2");
 exit;
 }
 
 $izraz=$veza->prepare("select * from operater where email=:email");
-$izraz->execute(array("email"=>$_POST["korisnik"]));
+$izraz->execute(array("email"=>$_POST["email"]));
 
 $o = $izraz->fetch(PDO::FETCH_OBJ);
 

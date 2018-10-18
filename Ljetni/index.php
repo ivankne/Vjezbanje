@@ -1,4 +1,5 @@
-<?php include_once "config.php"
+<?php include_once "config.php";
+
 /*
   ZADATAK
 1.Aplikacija mora imati javni i privatni dio
@@ -51,13 +52,15 @@
                 <?php
                 //Ne radi ispis logiranog korisnika
                     if(isset($_SESSION[$idAPP."o"])):
-                        print "Pozdrav {$_POST["korisnik"]} ,ovdje možeš vidjeti svoje prihode od nastupa...";
 
+                        print "Pozdrav, ovdje možeš imaš pregled svojih nastupa od ovog mjeseca...";
+                                //Kako? nemam pojma -.-'
 
                          $izraz = $veza->prepare("
-                            select a.naziv, a.datum_pocetka, a.cijena,a.bend, b.naziv_benda as Bend 
-                            from dogadaj a left join bend b 
-                            on b.naziv_benda=a.bend");
+                            select a.naziv, a.datum_pocetka, a.cijena,a.bend, b.naziv_benda as bend
+                            from dogadaj a left join bend b
+                            on a.bend=b.sifra where b.sifra = 1
+                            ");
                         $izraz->execute();
                         $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
                         ?>
@@ -78,25 +81,59 @@
                                <td><?php echo $red->datum_pocetka; ?></td>
                                <td><?php echo $red->cijena; ?></td>
                                <td><?php echo $red->bend; ?></td>
-
                            </tr>
+
                            <?php endforeach; ?>
                            </tbody>
                            </table>
-                       <?php
+                   <a href="<?php echo $putanjaAPP; ?>private/dogadaji/dogadaji.php">
+                       <i class="fi-calendar size-60" style="color: #0d1932"> Idi na sve događaje ></i>
+                   </a>
+               </div>
 
+
+
+            <div class="cell pad small-6 large-3 text-center">
+                   <?php
+                   $izraz = $veza->prepare("
+                   select sum(a.cijena) as ukupno, b.naziv_benda as bend
+                   from dogadaj a left join bend b
+                   on a.bend=b.sifra
+                   ");
+                   $izraz->execute();
+                   $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
+                   ?>
+                    <table class="responsive">
+                        <tr>
+                            <th>Ukupna zarada</th>
+                        </tr>
+
+                        <tbody>
+                            <?php foreach($rezultati as $red):?>
+                                <tr>
+                                    <td><?php echo $red->ukupno; /*Kasnije ce tu biti zarada samo od dogadaja od logiranog korisnika*/?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+
+
+                   <?php
                     else:
                         print " ";
                     endif;
-                ?>
-               </div>
+                    ?>
+            </div>
+
+
         </div>
+
         <footer>
             <?php include_once "Template/footer.php" ?>
         </footer>
         </div>
 
-    </div>
 
 <?php include_once "Template/script.php" ?>
   </body>

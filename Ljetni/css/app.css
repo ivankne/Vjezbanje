@@ -133,5 +133,16 @@ form {
     display: inline-block;
 }
 
+th .fi-mail{
+    font-size: 2rem;
+    color: #3adb76;
+    text-shadow: 1px 4px 6px #FFF, 0 0 0 #000, 1px 4px 6px #FFF;
+}
+.fi-page-export-pdf{
+    font-size: 2rem;
+    color: #a00004;
+    text-shadow: 1px 4px 6px #FFF, 0 0 0 #000, 1px 4px 6px #FFF;
+}
+
 
 
