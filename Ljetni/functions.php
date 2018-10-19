@@ -1,13 +1,13 @@
 <?php
 
-function l($varijabla){
-    echo "<pre>";
-    print_r($varijabla);
-    echo "</pre>";
-}
+//function l($varijabla){
+//    echo "<pre>";
+//    print_r($varijabla);
+//    echo "</pre>";
+//}
 
 
-function saljiEmail( $imeiprezime, $vasemail, $vasaporuka){
+function saljiEmail($mail,$primatelji,$naslov,$poruka){
     require 'PHPmailer/PHPMailerAutoload.php';
     date_default_timezone_set('Etc/UTC');
     $mail = new PHPMailer;
@@ -20,14 +20,14 @@ function saljiEmail( $imeiprezime, $vasemail, $vasaporuka){
     $mail->SMTPAuth = true;
     $mail->Username = 'ivan.knez94@gmail.com';
     $mail->Password = 'X';
-    $mail->setFrom('$_POST=["vasemail"]', 'Korisnik',0);
-    $mail->addAddress('ivan.knez94@gmail.com', 'Moja');
-    $mail->isHTML(true);
-    $mail->Subject  = 'Poruka korisnika s Gazzera';
-    $mail->Body = <<<EOT
-    Email: {$_POST['vasemail']}
-    Name: {$_POST['imeiprezime']}
-    Message: {$_POST['vasaporuka']}EOT;
+    $posiljatelj = mb_encode_mimeheader("Gazzer","UTF-8");
+    $mail->setFrom('ivan.knez94@gmail.com', $posiljatelj);
+    foreach ($primatelji as $primatelj) {
+        $mail->addAddress($primatelj->email, mb_encode_mimeheader($primatelj->ime . " " . $primatelj->prezime));
+    }
+    $mail->Subject = $naslov;
+    $mail->msgHTML($poruka);
+    $mail->AltBody = $poruka;
     if (!$mail->send()) {
         return"Mailer Error: " . $mail->ErrorInfo;
     } else {

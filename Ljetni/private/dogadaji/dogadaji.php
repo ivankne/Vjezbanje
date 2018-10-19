@@ -15,7 +15,7 @@ if(isset($_GET["requirement"])) {
 
 
 $izraz = $veza->prepare("
-    select count(a.sifra from dogadaj a inner join bend b
+    select count(a.sifra) from dogadaj a inner join bend b
     on a.bend=b.sifra where concat(a.naziv, ' ',b.naziv_benda) 
     like :requirement                         
                         ");
@@ -85,7 +85,7 @@ if($stranica==0){
                         <th>Adresa</th>
                         <th>Bend</th>
                         <th>
-                            <a href="exportPDF.php">
+                            <a href="exportPDF.php" target="_blank">
                                 <i class="fi-page-export-pdf" title="Preuzmi PDF"></i>
                             </a>
                         </th>

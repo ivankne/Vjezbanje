@@ -48,14 +48,16 @@
         <div class="large-12 cell text-center">
             <form class="callout text-center" action="<?php echo $putanjaAPP . "authorize.php" ?>" method="post">
                 <h2>Prijavi se</h2>
-                <label for="email">Email</label>
+                <label for="email">Email
                 <div class="floated-label-wrapper">
                     <input type="email" id="email" name="email" placeholder="edunova@edunova.hr">
                 </div>
-                <label for="lozinka">Lozinka</label>
+                </label>
+                <label for="lozinka">Lozinka
                 <div class="floated-label-wrapper">
                     <input autocomplete="off" type="password" id="lozinka" name="lozinka" placeholder="e">
                 </div>
+                </label>
                 <input class="button expanded" type="submit" value="Prijava">
             </form>
         </div>

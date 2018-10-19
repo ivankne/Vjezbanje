@@ -64,7 +64,7 @@ if($stranica==0){
                    <?php
                    $izraz =  $veza->prepare("
                             select a.sifra, a.ime, a.prezime, a.koeficijent, b.naziv_benda as bend, a.email
-                            from clan a left join bend b
+                            from bend b left join clan a
                             on a.bend=b.sifra 
                             where concat(a.ime, ' ' ,a.prezime, ' ', b.naziv_benda)                      
                             like :requirement 
@@ -86,10 +86,7 @@ if($stranica==0){
                         <th>Koeficijent</th>
                         <th>Email</th>
                         <th>
-                            <a href="#">
-                                <i class="fi-mail" title="Pošalji email svima"></i>
-
-                            </a>
+                                <i id="s_<?php echo $red->sifra ?>" class="fi-mail" title="Pošalji email svima"></i>
                         </th>
                     </tr>
                     </thead>
@@ -116,6 +113,15 @@ if($stranica==0){
                     </tbody>
                 </table>
 
+                <div class="reveal small" id="saljiEmail" data-reveal>
+                    Poruka
+                    <textarea  id="poruka" cols="30" rows="10"></textarea>
+                    <a href="#" id="posalji">Pošalji</a>
+                    <button class="close-button" data-close aria-label="Zatvori" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
                 <?php
                     if($ukupnoStranica==0){
                         $ukupnoStranica=1;
@@ -140,7 +146,33 @@ if($stranica==0){
             <?php include_once "../../Template/footer.php" ?>
         </footer>
     </div>
+    <?php include_once "../../Template/script.php" ?>
+    <script>
 
-<?php include_once "../../Template/script.php" ?>
+        var sifra;
+        $(".fi-mail").click(function(){
+            sifra=$(this).attr("id").split("_")[1];
+            $('#saljiEmail').foundation("open");
+            return false;
+        });
+
+
+        $("#posalji").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "saljiEmail.php",
+                data: "sifra=" + sifra + "&poruka="+$("#poruka").val(),
+                success: function(vratioServer){
+                    //console.log(vratioServer);
+                    if (vratioServer==="OK"){
+                        $('#saljiEmail').foundation("close");
+                    }
+
+                }
+            });
+            return false;
+        });
+     </script>
+
   </body>
 </html>

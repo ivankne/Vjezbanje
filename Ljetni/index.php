@@ -21,13 +21,14 @@
 14.U izborniku aplikacije postaviti stavku link na ERA dijagram
 15.Za razvoj aplikacije se koristi Foundation RWD framework
 */
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
   <head>
     <?php include_once "Template/head.php" ?>
   </head>
-  <body>
+
     <div class="grid-container">
         <div class="header">
             <?php include_once "Template/nav.php" ?>
@@ -45,8 +46,7 @@
                 </div>
             <?php endif;?>
 
-
-<!--graf koji ce prikazivati prihode nastupa od prijavljenog korisnika-->
+            
                <div class="cell pad small-12 text-center">
 
                 <?php
@@ -57,9 +57,9 @@
                                 //Kako? nemam pojma -.-'
 
                          $izraz = $veza->prepare("
-                            select a.naziv, a.datum_pocetka, a.cijena,a.bend, b.naziv_benda as bend
-                            from dogadaj a left join bend b
-                            on a.bend=b.sifra where b.sifra = 1
+                        select a.naziv, a.datum_pocetka, a.cijena,a.bend, b.naziv_benda as bend, b.sifra as sifra_benda
+                        from dogadaj a left join bend b
+                        on a.bend=b.sifra limit 5
                             ");
                         $izraz->execute();
                         $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
@@ -95,27 +95,52 @@
 
             <div class="cell pad small-6 large-3 text-center">
                    <?php
-                   $izraz = $veza->prepare("
+                   $query = $veza->prepare("
                    select sum(a.cijena) as ukupno, b.naziv_benda as bend
                    from dogadaj a left join bend b
-                   on a.bend=b.sifra
+                   on a.bend=b.sifra where b.sifra=1
                    ");
-                   $izraz->execute();
-                   $rezultati = $izraz->fetchAll(PDO::FETCH_OBJ);
+                   $query->execute();
+                   $rez = $query->fetchAll(PDO::FETCH_OBJ);
                    ?>
                     <table class="responsive">
+                        <?php foreach($rez as $res):?>
                         <tr>
-                            <th>Ukupna zarada</th>
+                            <th>Ukupna zarada od <?php echo $res->bend  ?></th>
                         </tr>
-
                         <tbody>
-                            <?php foreach($rezultati as $red):?>
                                 <tr>
-                                    <td><?php echo $red->ukupno; /*Kasnije ce tu biti zarada samo od dogadaja od logiranog korisnika*/?></td>
+                                    <td><?php echo $res->ukupno; /*Kasnije ce tu biti zarada samo od dogadaja od logiranog korisnika*/?></td>
                                 </tr>
-                            <?php endforeach; ?>
+
                         </tbody>
                     </table>
+            <?php endforeach; ?>
+
+                <?php
+                $novi = $veza->prepare("
+                        select sifra, naziv_benda from bend
+                   ");
+
+                $novi->execute();
+                $result = $novi->fetchAll(PDO::FETCH_OBJ);
+                ?>
+                <p><button class="button success" data-open="exampleModal1">Graf zarade po mjesecima</button></p>
+
+                <div class="reveal" id="exampleModal1" data-reveal>
+                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <label>Odaberi bend
+
+                        <select>
+                            <?php foreach($result as $row):?>
+                                <option id="odabrani" value="<?php echo $row->sifra;?>"><?php echo $row->naziv_benda;?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                </div>
 
 
 
@@ -127,6 +152,8 @@
             </div>
 
 
+
+
         </div>
 
         <footer>
@@ -136,5 +163,64 @@
 
 
 <?php include_once "Template/script.php" ?>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script>
+        // S ovime izvucem sifru odabranog benda iz selecta?
+      $("#odabrani").change(function() {
+          var sifra = $(this).children(":selected").attr("sifra");
+      });
+
+      Highcharts.chart('container', {
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+          },
+          title: {
+              text: 'Zarada po mjesecima'
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.y}</b>'
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: true,
+                      format: '<b>{point.name}</b>: {point.y}',
+                      style: {
+                          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                      }
+                  }
+              }
+          },
+          series: [{
+              name: 'Zarada',
+              colorByPoint: true,
+              data:
+              <?php
+
+              $query = $veza->prepare("
+               select b.naziv_benda as name, 
+                a.cijena as y
+                from dogadaj a
+               inner join bend b
+               on b.sifra=a.bend
+               ");
+              $query->execute();
+              $rez = $query->fetchAll(PDO::FETCH_OBJ);
+              echo json_encode($rez, JSON_NUMERIC_CHECK);
+              ?>
+
+          }]
+      });
+  </script>
+
   </body>
+
 </html>

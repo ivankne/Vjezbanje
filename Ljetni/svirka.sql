@@ -49,7 +49,7 @@ prezime varchar(50) not null
 );
 
 insert into operater (email,lozinka,ime,prezime)  
-values ('ivan@gmail.com','042dc4512fa3d391c5170cf3aa61e6a638f84342',
+values ('ivan@gmail.com','$2y$12$rLkAxNcXn8dUY1C3MUYVV.qceDJcVbVYZu7El75qAqkCR.cMnuwRC',
 'Ivan','Knežević');
 insert into operater (email,lozinka,ime,prezime)  
 values ('edunova@edunova.hr','$2y$12$rLkAxNcXn8dUY1C3MUYVV.qceDJcVbVYZu7El75qAqkCR.cMnuwRC',
@@ -88,7 +88,7 @@ insert into clan(sifra,ime,prezime,email,bend,koeficijent,aktivan) values
 (null,'Danijel','Kos','kosilica@gmail.com',1,'0.16',true),
 (null,'Gabriel','Lustig','lustig@gmail.com',1,'0.16',true),
 (null,'Toni','Čikvar','ciki@gmail.com',1,'0.16',true),
-(null,'Ivan','Knežević','knezevic@gmail.com',1,'0.16',true),
+(null,'Ivan','Knežević','mrtamburaknez@gmail.com',1,'0.16',true),
 (null,'Miroslav','Ivanković','miro@gmail.com',3,'0.20',true),
 (null,'Krunoslav','Mesić','kruno@gmail.com',3,'0.16',true),
 (null,'Denis','Hrovat','denis@gmail.com',3,'0.16',true),
