@@ -27,6 +27,18 @@
 <html class="no-js" lang="en" dir="ltr">
   <head>
     <?php include_once "Template/head.php" ?>
+      <link rel="stylesheet" href="<?php echo $putanjaAPP; ?>css/cropper.css">
+      <style>
+          .slika{
+              max-width: 2rem;
+              cursor: pointer;
+          }
+
+          .cropper-container, .cropper-bg{
+              width: 300px !important;
+              height: 300px !important;
+          }
+      </style>
   </head>
 
     <div class="grid-container">
@@ -46,7 +58,7 @@
                 </div>
             <?php endif;?>
 
-            
+
                <div class="cell pad small-12 text-center">
 
                 <?php
@@ -66,6 +78,8 @@
                         ?>
                        <br>
                        <br>
+                   <?php foreach($rezultati as $red):?>
+
 
                        <table class="responsive">
                            <tr>
@@ -73,14 +87,26 @@
                                <th>Datum</th>
                                <th>Cijena</th>
                                <th>Bend</th>
+                               <th></th>
                            </tr>
                            <tbody>
-                           <?php foreach($rezultati as $red):?>
+
                            <tr>
                                <td><?php echo $red->naziv; ?></td>
                                <td><?php echo $red->datum_pocetka; ?></td>
                                <td><?php echo $red->cijena; ?></td>
                                <td><?php echo $red->bend; ?></td>
+                               <td>
+                                   <img title="Klik na sliku za promjenu" class="slika" id="s_<?php echo $red->sifra_benda;?>"
+                                        src="<?php
+                                        if(file_exists("img/bendovi/" . $red->sifra_benda . ".jpg")){
+                                            echo $putanjaAPP . "img/bendovi/" . $red->sifra_benda . ".jpg";
+                                        }else{
+                                            echo $putanjaAPP . "img/nepoznato.jpg";
+                                        }
+
+                                        ?>" alt="<?php echo $red->bend ?>" />
+                               </td>
                            </tr>
 
                            <?php endforeach; ?>
@@ -93,17 +119,18 @@
 
 
 
-            <div class="cell pad small-6 large-3 text-center">
+            <div class="cell pad  large-3 text-center">
                    <?php
                    $query = $veza->prepare("
                    select sum(a.cijena) as ukupno, b.naziv_benda as bend
                    from dogadaj a left join bend b
                    on a.bend=b.sifra where b.sifra=1
                    ");
+
                    $query->execute();
                    $rez = $query->fetchAll(PDO::FETCH_OBJ);
                    ?>
-                    <table class="responsive">
+                    <table class="">
                         <?php foreach($rez as $res):?>
                         <tr>
                             <th>Ukupna zarada od <?php echo $res->bend  ?></th>
@@ -121,7 +148,7 @@
                 $novi = $veza->prepare("
                         select sifra, naziv_benda from bend
                    ");
-
+                $novi->bindParam(":sifra",$_POST["sifra"]);
                 $novi->execute();
                 $result = $novi->fetchAll(PDO::FETCH_OBJ);
                 ?>
@@ -156,6 +183,16 @@
 
         </div>
 
+        <div class="reveal small" id="odaberiSliku" data-reveal>
+
+            <img id="image" src="<?php echo $putanjaAPP; ?>img/bendovi/nepoznato.jpg" alt="Picture">
+            <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+            <a href="#" id="spremi">Spremi</a>
+            <button class="close-button" data-close aria-label="Zatvori" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <footer>
             <?php include_once "Template/footer.php" ?>
         </footer>
@@ -167,11 +204,108 @@
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://fengyuanchen.github.io/js/common.js"></script>
+  <script src="<?php echo $putanjaAPP; ?>js/cropper.js"></script>
   <script>
         // S ovime izvucem sifru odabranog benda iz selecta?
       $("#odabrani").change(function() {
           var sifra = $(this).children(":selected").attr("sifra");
       });
+
+      //SLIKA
+
+        $(function () {
+            'use strict';
+
+            var slika;
+            $(".slika").click(function(){
+                slika=$(this);
+                $('#odaberiSliku').foundation("open");
+
+                return false;
+            });
+
+
+            $("#spremi").click(function(){
+
+                var opcije = { "width": 200, "height": 200 };
+                var result = $image.cropper("getCroppedCanvas", opcije, opcije);
+
+                $.ajax({
+                    type: "POST",
+                    url: "spremiSliku.php",
+                    data: "sifra_benda=" + slika.attr("id").split("_")[1] + "&slika="+result.toDataURL(),
+                    success: function(vratioServer){
+                        //console.log(vratioServer);
+                        if (vratioServer==="OK"){
+                            slika.attr("src",result.toDataURL());
+                            $('#odaberiSliku').foundation("close");
+                        }
+
+                    }
+                });
+
+
+                return false;
+            });
+
+            var console = window.console || { log: function () {} };
+            var URL = window.URL || window.webkitURL;
+            var $image = $('#image');
+            var options = {
+                aspectRatio: 1 / 1
+            };
+
+            var originalImageURL = $image.attr('src');
+            var uploadedImageName = 'cropped.jpg';
+            var uploadedImageType = 'image/jpeg';
+            var uploadedImageURL;
+
+
+            // Cropper
+            $image.on({
+
+            }).cropper(options);
+
+
+            // Import image
+            var $inputImage = $('#inputImage');
+
+            if (URL) {
+                $inputImage.change(function () {
+                    var files = this.files;
+                    var file;
+
+                    if (!$image.data('cropper')) {
+                        return;
+                    }
+
+                    if (files && files.length) {
+                        file = files[0];
+
+                        if (/^image\/\w+$/.test(file.type)) {
+                            uploadedImageName = file.name;
+                            uploadedImageType = file.type;
+
+                            if (uploadedImageURL) {
+                                URL.revokeObjectURL(uploadedImageURL);
+                            }
+
+                            uploadedImageURL = URL.createObjectURL(file);
+                            $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                            $inputImage.val('');
+                        } else {
+                            window.alert('Please choose an image file.');
+                        }
+                    }
+                });
+            } else {
+                $inputImage.prop('disabled', true).parent().addClass('disabled');
+            }
+
+        });
+
+      //End slika
 
       Highcharts.chart('container', {
           chart: {

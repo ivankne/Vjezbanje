@@ -4,16 +4,20 @@
 if(!isset($_SESSION[$idAPP."o"])){
   header("location: " . $putanjaAPP . "logout.php");
 }
+//
+//try{
+//    $naziv="";
+//    $napomena="";
+//    include_once "dodavanje.php";
+//    header("location: edit.php?sifra=" . $sifraDog);
+//}catch(PDOException $e){
+//    $veza->rollBack();
+//    header("location: index.php");
+//}
 
-if(isset($_POST["add"])){
-    $izraz = $veza->prepare("insert into dogadaj (naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,narucitelj,adresa) values 
-                          (:naziv,:napomena,:datum_pocetka,:datum_zavrsetka,:cijena,:narucitelj,:adresa)");
-    unset($_POST["add"]);
-    $izraz->execute($_POST);
-    header("location: dogadaji.php");
-}
-
+$greske=Array();
 ?>
+
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <head>
@@ -59,13 +63,51 @@ if(isset($_POST["add"])){
                 <input autocomplete="off" type="text"  id="adresa" name="adresa" >
             </div>
             <input type="hidden" name="sifra" />
-            <input type="hidden" name="bend" />
+
 
             <input class="button expanded" type="submit" name="add" value="Dodaj">
         </form>
         </div>
     </div>
+    <?php
+    if(isset($_POST["add"])) {
+        if (count($greske) === 0) {
+            $izraz = $veza->prepare("
+          insert into dogadaj (naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,narucitelj,adresa) values
+          (:naziv,:napomena,:datum_pocetka,:datum_zavrsetka,:cijena,:narucitelj,:adresa)");
+            $izraz->bindParam(":adresa", $_POST["adresa"]);
+            $izraz->bindParam(":napomena", $_POST["napomena"]);
+            if ($_POST["naziv"] === "0") {
+                $greske["naziv"] = "Obavezan unos naziva! ";
+            } else {
+                $izraz->bindParam(":naziv", $_POST["naziv"]);
+            }
+            if ($_POST["narucitelj"] === "0") {
+                $greske["narucitelj"] = "Obavezan unos narucitelja! ";
+            } else {
+                $izraz->bindParam(":narucitelj", $_POST["narucitelj"]);
+            }
+            if ($_POST["datum_zavrsetka"] === "0") {
+                $izraz->bindValue(":datum_zavrsetka", null, PDO::PARAM_INT);
+            } else {
+                $izraz->bindParam(":datum_zavrsetka", $_POST["datum_zavrsetka"]);
+            }
+            if ($_POST["datum_pocetka"] === "") {
+                $izraz->bindValue(":datum_pocetka", null, PDO::PARAM_INT);
+            } else {
+                $izraz->bindParam(":datum_pocetka", $_POST["datumpocetka"]);
+            }
+            if ($_POST["cijena"] === "") {
+                $izraz->bindValue(":cijena", null, PDO::PARAM_INT);
+            } else {
+                $izraz->bindParam(":cijena", $_POST["cijena"]);
+            }
 
+            $izraz->execute();
+            header("location: dogadaji.php");
+        }
+    }
+    ?>
     <footer>
         <?php include_once "../../Template/footer.php" ?>
     </footer>

@@ -17,7 +17,7 @@ if(isset($_GET["requirement"])) {
 $izraz = $veza->prepare("
     select count(a.sifra) from dogadaj a inner join bend b
     on a.bend=b.sifra where concat(a.naziv, ' ',b.naziv_benda) 
-    like :requirement                         
+    like :requirement                          
                         ");
 $izraz->execute(array("requirement"=>"%" . $requirement . "%"));
 $ukupnoClanova = $izraz->fetchColumn();
@@ -60,10 +60,12 @@ if($stranica==0){
 
                 <?php
                 $izraz =  $veza->prepare("
-                           select a.naziv_benda as bend, b.sifra,b.naziv, b.napomena,
-                            b.datum_pocetka, b.datum_zavrsetka,b.cijena, b.narucitelj,b.adresa 
-                            from bend a left join dogadaj b on a.sifra=b.bend 
-                            where concat(b.naziv, ' ' ,b.datum_pocetka, ' ' ,b.cijena, ' ', a.naziv_benda)                      
+                    select c.naziv, c.napomena, c.datum_pocetka, c.datum_zavrsetka, c.cijena, 
+                    c.narucitelj, c.adresa, /*concat(a.ime,' ',a.prezime) as svirali,*/ b.naziv_benda as bend
+                    from clan a 
+                    left join bend b on a.bend = b.sifra
+                    left join dogadaj c on b.sifra = c.bend 
+                    where concat(c.naziv, ' ',b.naziv_benda) 
                             like :requirement                    
                             limit :stranica, 10                      
                             ");
@@ -83,6 +85,7 @@ if($stranica==0){
                         <th>Cijena</th>
                         <th>Narucitelj</th>
                         <th>Adresa</th>
+<!--                        <th>Svirali</th>-->
                         <th>Bend</th>
                         <th>
                             <a href="exportPDF.php" target="_blank">
@@ -101,6 +104,7 @@ if($stranica==0){
                             <td><?php echo $red->cijena; ?></td>
                             <td><?php echo $red->narucitelj; ?></td>
                             <td><?php echo $red->adresa; ?></td>
+<!--                            <td>--><?php //echo $red->svirali; ?><!--</td>-->
                             <td><?php echo $red->bend; ?></td>
                             <td>
                                 <a href="edit.php?sifra=<?php echo $red->sifra; ?>">

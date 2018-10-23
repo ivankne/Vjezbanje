@@ -32,13 +32,15 @@
                 <ul class="social">
                     <li>
                         <a href="#" title="ERA">
-                            <i class="fi-database size-60" data-open="myModal"></i>
+                            <i class="fi-database size-60" data-open="exampleModal1"></i>
                         </a>
-                        <div id="myModal" class="reveal-modal text-center" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+
+                        <div class="reveal" id="exampleModal1" data-reveal>
                             <h2 id="modalTitle">ERA DIJAGRAM</h2>
-                            <img src="img/era.png">
+                            <img src="<?php echo $putanjaAPP; ?>img/era.png">
                             <button class="close-button" data-close aria-label="Close modal" type="button">
                                 <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
 
                     </li>

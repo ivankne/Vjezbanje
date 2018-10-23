@@ -22,6 +22,7 @@ $izraz = $veza->prepare("
             where sifra=:sifra
             and email is not null and email<>''
  ");
+
  $izraz->execute(array("sifra"=>$_POST["sifra"]));
  $mailovi = $izraz->fetchAll(PDO::FETCH_OBJ);
 

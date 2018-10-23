@@ -16,19 +16,50 @@ if(!isset($_GET["sifra"]) && !isset($_POST["sifra"])){
 
 
 
-if(isset($_POST["edit"])){
-  $izraz = $veza->prepare("update dogadaj set 
-    naziv=:naziv,napomena=:napomena,datum_pocetka=:datum_pocetka,
-    datum_zavrsetka=:datum_zavrsetka,narucitelj=:narucitelj,
-    adresa=:adresa,bend=:bend where sifra=:sifra;");
-  unset($_POST["edit"]);
-  $izraz->execute($_POST);
-  header("location: dogadaji.php");
+if(isset($_POST["edit"])) {
+
+    try{
+        $veza->beginTransaction();
+
+        $izraz = $veza->prepare("select bend from dogadaj where sifra=:sifra;");
+        $izraz->execute(array("sifra"=>$_POST["sifra"]));
+        $sifraDog = $izraz->fetchColumn();
+
+        $izraz = $veza->prepare("
+          update dogadaj set :naziv, :napomena, :datum_pocetka, :datum_zavrsetka, :cijena, :narucitelj, :adresa, :bend
+          where sifra=:sifra;");
+
+        $izraz->execute(array(
+            "naziv"=>$naziv,
+            "narucitelj"=>$narucitelj,
+            "napomena"=>"",
+            "datum_pocetka"=>"",
+            "datum_zavrsetka"=>"",
+            "cijena"=>"",
+            "adresa"=>"",
+            "bend"=>""
+        ));
+
+
+        $veza->commit();
+        header("location: dogadaji.php?requirement=" . $_POST["naziv"]);
+    }catch(PDOException $e){
+        $veza->rollBack();
+    }
+
+
 }else{
-  $izraz = $veza->prepare("select * from dogadaj where sifra=:sifra");
-  $izraz->execute($_GET);
-  $o=$izraz->fetch(PDO::FETCH_OBJ);
+    $izraz = $veza->prepare("
+  
+  select a.sifra, a.naziv, a.napomena, a.datum_pocetka, a.datum_zavrsetka, a.cijena, a.narucitelj, a.adresa, a.bend
+  from dogadaj a inner join bend b
+  on a.bend=b.sifra where a.sifra=:sifra
+  
+  ");
+    $izraz->execute($_GET);
+    $o=$izraz->fetch(PDO::FETCH_OBJ);
 }
+
 ?>
 
 <!doctype html>
