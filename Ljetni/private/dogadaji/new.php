@@ -4,16 +4,6 @@
 if(!isset($_SESSION[$idAPP."o"])){
   header("location: " . $putanjaAPP . "logout.php");
 }
-//
-//try{
-//    $naziv="";
-//    $napomena="";
-//    include_once "dodavanje.php";
-//    header("location: edit.php?sifra=" . $sifraDog);
-//}catch(PDOException $e){
-//    $veza->rollBack();
-//    header("location: index.php");
-//}
 
 $greske=Array();
 ?>
@@ -62,6 +52,10 @@ $greske=Array();
                 <label for="adresa">adresa</label>
                 <input autocomplete="off" type="text"  id="adresa" name="adresa" >
             </div>
+            <div class="floated-label-wrapper">
+                <label for="bend">Bend</label>
+                <input autocomplete="off" type="text"  id="bend" name="bend" >
+            </div>
             <input type="hidden" name="sifra" />
 
 
@@ -73,8 +67,8 @@ $greske=Array();
     if(isset($_POST["add"])) {
         if (count($greske) === 0) {
             $izraz = $veza->prepare("
-          insert into dogadaj (naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,narucitelj,adresa) values
-          (:naziv,:napomena,:datum_pocetka,:datum_zavrsetka,:cijena,:narucitelj,:adresa)");
+          insert into dogadaj (naziv,napomena,datum_pocetka,datum_zavrsetka,cijena,narucitelj,adresa,bend) values
+          (:naziv,:napomena,:datum_pocetka,:datum_zavrsetka,:cijena,:narucitelj,:adresa,:bend)");
             $izraz->bindParam(":adresa", $_POST["adresa"]);
             $izraz->bindParam(":napomena", $_POST["napomena"]);
             if ($_POST["naziv"] === "0") {
@@ -95,14 +89,18 @@ $greske=Array();
             if ($_POST["datum_pocetka"] === "") {
                 $izraz->bindValue(":datum_pocetka", null, PDO::PARAM_INT);
             } else {
-                $izraz->bindParam(":datum_pocetka", $_POST["datumpocetka"]);
+                $izraz->bindParam(":datum_pocetka", $_POST["datum_pocetka"]);
+            }
+            if ($_POST["bend"] === "") {
+                $izraz->bindValue(":bend", null, PDO::PARAM_INT);
+            } else {
+                $izraz->bindParam(":bend", $_POST["bend"]);
             }
             if ($_POST["cijena"] === "") {
                 $izraz->bindValue(":cijena", null, PDO::PARAM_INT);
             } else {
                 $izraz->bindParam(":cijena", $_POST["cijena"]);
             }
-
             $izraz->execute();
             header("location: dogadaji.php");
         }

@@ -51,9 +51,10 @@ if(isset($_POST["edit"])) {
 }else{
     $izraz = $veza->prepare("
   
-  select a.sifra, a.naziv, a.napomena, a.datum_pocetka, a.datum_zavrsetka, a.cijena, a.narucitelj, a.adresa, a.bend
-  from dogadaj a inner join bend b
-  on a.bend=b.sifra where a.sifra=:sifra
+  select a.naziv, a.napomena, a.datum_pocetka, a.datum_zavrsetka, a.cijena, a.narucitelj, a.adresa, 
+                    b.naziv_benda as bend
+                    from dogadaj a 
+                    left join bend b on a.bend=b.sifra
   
   ");
     $izraz->execute($_GET);

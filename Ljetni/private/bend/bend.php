@@ -15,7 +15,7 @@ if(!isset($_SESSION[$idAPP."o"])){
         <div class="header">
             <?php include_once "../../Template/nav.php" ?>
         </div>
-        <h1>NEVAŽNA STRANICA... za sada</h1>
+<!--        <h1>NEVAŽNA STRANICA... za sada</h1>-->
 
         <div class="grid-x">
 

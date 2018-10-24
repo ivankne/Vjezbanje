@@ -63,10 +63,10 @@ if($stranica==0){
 
                    <?php
                    $izraz =  $veza->prepare("
-                            select b.ime,b.prezime, b.email, b.koeficijent, a.naziv_benda as bend
-                            from bend a 
-                            left join clan b on b.bend = a.sifra
-                            where concat(b.ime, ' ' ,b.prezime, ' ', a.naziv_benda)                      
+                            select a.ime, a.prezime, a.email, a.koeficijent, b.naziv_benda as bend
+                            from clan a 
+                            inner join bend b on b.sifra=a.bend
+                            where concat(a.ime, ' ' ,a.prezime, ' ', b.naziv_benda)                      
                             like :requirement 
                             limit :stranica, 10                      
                             ");

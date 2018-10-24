@@ -17,12 +17,12 @@ create table dogadaj(
 sifra int not null primary key auto_increment,
 naziv varchar(20) not null,
 napomena varchar(50),
-datum_pocetka datetime not null,
-datum_zavrsetka datetime not null,
+datum_pocetka date not null,
+datum_zavrsetka date not null,
 cijena int not null,
 narucitelj varchar(20) not null,
 adresa varchar(50),
-bend int not null
+bend int
 );
 
 create table clan(
@@ -55,7 +55,7 @@ insert into operater (email,lozinka,ime,prezime)
 values ('edunova@edunova.hr','$2y$12$rLkAxNcXn8dUY1C3MUYVV.qceDJcVbVYZu7El75qAqkCR.cMnuwRC',
 'Pero','Perić');
 
-alter table clan add foreign key (bend) references bend(sifra);
+alter table clan add foreign key (bend) references bend(sifra); 
 
 alter table dogadaj add foreign key (bend) references bend(sifra);
 

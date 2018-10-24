@@ -51,7 +51,7 @@
                     <a href="<?php echo $putanjaAPP;?>logout.php">
                         <i class="fi-power"> </i>
                     </a>
-                <?php endif; ?>
+                <?php endif ?>
             </li>
         </ul>
     </div>

@@ -60,14 +60,13 @@ if($stranica==0){
 
                 <?php
                 $izraz =  $veza->prepare("
-                    select c.naziv, c.napomena, c.datum_pocetka, c.datum_zavrsetka, c.cijena, 
-                    c.narucitelj, c.adresa, /*concat(a.ime,' ',a.prezime) as svirali,*/ b.naziv_benda as bend
-                    from clan a 
-                    left join bend b on a.bend = b.sifra
-                    left join dogadaj c on b.sifra = c.bend 
-                    where concat(c.naziv, ' ',b.naziv_benda) 
+                    select a.naziv, a.napomena, a.datum_pocetka, a.datum_zavrsetka, a.cijena, a.narucitelj, a.adresa, 
+                    b.naziv_benda as bend
+                    from dogadaj a 
+                    left join bend b on a.bend=b.sifra
+                    where concat(a.naziv, ' ',b.naziv_benda) 
                             like :requirement                    
-                            limit :stranica, 10                      
+                            limit :stranica, 10                     
                             ");
                 $izraz->bindValue("stranica",($stranica*10) - 10,PDO::PARAM_INT);
                 $izraz->bindValue("requirement","%" . $requirement . "%");
@@ -104,17 +103,17 @@ if($stranica==0){
                             <td><?php echo $red->cijena; ?></td>
                             <td><?php echo $red->narucitelj; ?></td>
                             <td><?php echo $red->adresa; ?></td>
-<!--                            <td>--><?php //echo $red->svirali; ?><!--</td>-->
+<!--                         <td>--><?php //echo $red->svirali; ?><!--</td>-->
                             <td><?php echo $red->bend; ?></td>
                             <td>
-                                <a href="edit.php?sifra=<?php echo $red->sifra; ?>">
+                                <a href="edit.php?sifra=<?php echo $red->sifra;?>">
                                     <i class="fi-page-edit"></i>
                                 </a>
                                 <?php if($red->bend==0): ?>
                                     <a onclick="return confirm('Sigurno obrisati <?php echo $red->naziv?>')" href="delete.php?sifra=<?php echo $red->sifra; ?>">
                                         <i class="fi-trash" style="color: red;"></i>
                                     </a>
-                                <?php endif;?>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
